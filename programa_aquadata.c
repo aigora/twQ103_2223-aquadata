@@ -1,8 +1,18 @@
 // TRABAJO INFORMÁTICA
 #include <stdio.h>
+struct Tfuente{
+	char fuente[10];
+	float pH;
+	int conductividad;
+	int turbidez;
+	int coliformes;
+};
 
 
 int main () {
+	struct Tfuente lavapies[500];
+	int nfuentes;
+	int i;
 	int opcion;
 	char opciondato;
 	FILE *ficherodado;
@@ -31,13 +41,22 @@ int main () {
 			printf("¿Que datos desea buscar?\n");
 			printf("A. Buscar datos por fuente\n");
 			printf("B. Buscar datos por parámetros\n");
-			printf("E. Estadísticas\n");
+			printf("E. Estadisticas\n");
+			fflush(stdin);
 			scanf ("%c", &opciondato);
+		}
+	
 
-			}while (opciondato != 'A' && opciondato != 'B' && opciondato != 'E');
+			while (opciondato != 'A' && opciondato != 'B' && opciondato != 'E');
 
             case 'A':
             case 'a':
+            	//printf("Que fuente quieres buscar");
+            	while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
+            	/*for (i=0; i<nfuentes; i++) {
+	    	    if (clase[i].nmatricula == 50007) {
+		     	clase[i].nota += 1;*/
 
                 break;
 
