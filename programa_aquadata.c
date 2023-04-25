@@ -6,7 +6,7 @@ struct Tfuente{
 	int conductividad;
 	int turbidez;
 	int coliformes;
-};
+};///VVVV
 
 
 int main () {
