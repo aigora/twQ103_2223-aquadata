@@ -7,14 +7,16 @@ struct Tfuente{
 	int turbidez;
 	int coliformes;
 };///VVVV
-
+void buscarparametro(struct Tfuente lavapies[], int , float);
 
 int main () {
 	struct Tfuente lavapies[500];
 	int nfuentes;
-	int i;
+	char parametro;
+	int i,j;
 	int opcion;
 	char opciondato;
+	float pH;
 	FILE *ficherodado;
 	ficherodado = fopen("202301_Lavapies.txt", "r"); // Modo: "r" "w" (hay otros modos)
 
@@ -39,29 +41,36 @@ int main () {
 		case 1:{
 		    do{
 			printf("¿Que datos desea buscar?\n");
-			printf("A. Buscar datos por fuente\n");
-			printf("B. Buscar datos por parámetros\n");
+			printf("B. Buscar datos \n");
 			printf("E. Estadisticas\n");
 			fflush(stdin);
 			scanf ("%c", &opciondato);
 		}
 	
 
-			while (opciondato != 'A' && opciondato != 'B' && opciondato != 'E');
+			while ( opciondato != 'B' && opciondato != 'E');
 
-            case 'A':
-            case 'a':
-            	//printf("Que fuente quieres buscar");
-            	while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
-		printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
-            	/*for (i=0; i<nfuentes; i++) {
-	    	    if (clase[i].nmatricula == 50007) {
-		     	clase[i].nota += 1;*/
-
-                break;
+            	//while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+				//printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
 
             case 'B':
             case 'b':
+            	do{
+				
+            	printf("¿Que parametro quieres buscar?\n");
+            	printf("Pulse P. pH\n");
+            	printf("Pulse C. conductividad\n");
+            	printf("Pulse T. turbidez\n ");
+            	printf("Pulse F. coliformes\n");
+            	fflush(stdin);
+            	scanf("%c", &parametro);
+            	switch(parametro){
+            		case 'P':
+            			printf("Introduce el pH del agua buscado que se encuentra entre 6 y 8\n");
+            			scanf("%f", &pH);
+            			buscarparametro(lavapies, 25, pH);		
+				}
+			}while(parametro!='P' || parametro!='C' || parametro!='T' ||parametro!='F');
 
                 break;
 
@@ -90,3 +99,28 @@ int main () {
 		return 0;
 }
 }
+void buscarparametro(struct Tfuente lavapies[], int dim , float ph ){
+	int i;
+		
+ 		if(ph>=6 && ph<=6.5){
+ 			for(i=0; i<dim;i++)
+ 			if(lavapies[i].pH>=6 && lavapies[i].pH<=6.5){
+ 				printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);
+	 }}
+	 	else if(ph<=7){
+	 		//for(j=0; j<dim;j++)
+	 		
+	 		//printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);
+	 }
+		else if(ph<=7.5){
+			//for(j=0; j<dim;j++)
+			//printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);
+		
+	}
+		else if(ph<=8){
+			//for(j=0; j<dim;j++)
+		//printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);
+		
+	}
+	 }
+	 
