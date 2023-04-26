@@ -9,7 +9,8 @@ struct Tfuente{
 	int coliformes;
 };
 
-void buscarparametro(struct Tfuente lavapies[], float ph);
+void buscarparametro(struct Tfuente lavapies[], float );
+void buscarparametrocondutividad(struct Tfuente lavapies[],int conductividad);
 
 int main () {
 	struct Tfuente lavapies[500];
@@ -19,6 +20,7 @@ int main () {
 	int opcion;
 	char opciondato;
 	float ph1;
+	int conductividad;
 	FILE *ficherodado;
 	ficherodado = fopen("202301_Lavapies.txt", "r"); // Modo: "r" "w" (hay otros modos)
 
@@ -65,8 +67,16 @@ int main () {
                         fflush(stdin);
             			scanf("%f", &ph1);
                         buscarparametroph(lavapies, ph1);
+                
 	 //}while(parametro!='P' || parametro!='C' || parametro!='T' ||parametro!='F')
 	 }
+	 			else if(parametro=='C'){
+	 				printf("Introduce la conductuvidad del agua buscada que se encuentra entre 100 y 200\n");
+                        fflush(stdin);
+            			scanf("%d", &conductividad);
+                        buscarparametroconductividad(lavapies, conductividad);
+	 				
+				 }
             break; // BREAK CASE B
 
 		}
@@ -94,7 +104,6 @@ void buscarparametroph(struct Tfuente lavapies[], float ph){
 
                         if (ficherodado == NULL) {
                         printf("Error, no puede abrir el fichero.\n");
-                        return 0;
                         }
                         if(ph>=6 && ph<=6.5){
                             printf("Las fuentes que se encuentran entre 6 y 6.5 son:\n");
@@ -120,5 +129,37 @@ void buscarparametroph(struct Tfuente lavapies[], float ph){
                                 printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}}
                                 }
 
-void buscarparametrocondutividad
+void buscarparametrocondutividad(struct Tfuente lavapies[],int conductividad){
+	int i=0;
+                        FILE *ficherodado;
+                        ficherodado = fopen("202301_Lavapies.txt", "r"); // Modo: "r" "w" (hay otros modos)
 
+                        if (ficherodado == NULL) {
+                        printf("Error, no puede abrir el fichero.\n");
+                        }
+                        if(conductividad>=100 && conductividad<=125){
+                            printf("Las conductividades que se encuentran entre 100 y 125 son:\n");
+                           while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+                              if (lavapies[i].conductividad >=100 && lavapies[i].conductividad<=125)
+                                printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
+                       
+                        }else if(conductividad>125 && conductividad<=150){
+                            printf("Las conductividades que se encuentran entre 125 y 150 son\n");
+                           while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+                              if (lavapies[i].conductividad >=125 && lavapies[i].conductividad<=150)
+                                printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
+
+                        } else if(conductividad>150 && conductividad<=175){
+                            printf("Las conductividades que se encuentran entre 150 y 175 son\n");
+                           while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+                              if (lavapies[i].conductividad >=150 && lavapies[i].conductividad<=175)
+                                printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}}
+                                
+                        else if(conductividad>175 && conductividad<=200){
+                            printf("Las conductividades que se encuentran entre 175 y 200 son\n");
+                           while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+                              if (lavapies[i].conductividad >=175 && lavapies[i].conductividad<=200)
+                                printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}}
+                                
+	
+}
