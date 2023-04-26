@@ -1,0 +1,7 @@
+Parametros	pH	Conductividad Turbidez Coliformes    Cal   Temperatura
+Fuente_1   7.35		210			0			0	     43        21
+Fuente_2   6.87     149         1           1  		 400	   23.4
+Fuente_3   7.12     232         0           0		 58		   22.5
+Fuente_4   7.60		112			0			0		 94		   21.7
+Fuente_5   6.92     186         0           0        203       22.1
+
