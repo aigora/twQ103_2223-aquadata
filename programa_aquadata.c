@@ -13,6 +13,11 @@ void buscarph(struct Tfuente lavapies[], float);
 void buscarcond(struct Tfuente lavapies[],int);
 void buscarturb (struct Tfuente lavapies[],int);
 void buscarcoliforme (struct Tfuente lavapies[],int);
+float mediac(struct Tfuente lavapies[],int);
+float mediapH(struct Tfuente lavapies[],int);
+float mediaturbidez(struct Tfuente lavapies[],int);
+float mediaccoliformes(struct Tfuente lavapies[],int);
+
 
 
 int main () {
@@ -84,8 +89,16 @@ int main () {
                         buscarcoliforme(lavapies, coliformes);}
 
 //}while(parametro!='P' || parametro!='C' || parametro!='T' ||parametro!='F')
-				 }
+				 
             break; // BREAK CASE B
+            case 'e':
+            case 'E':
+            	
+            	printf("Media conductividad: %f\n", mediac (lavapies, 25)/25);
+            	printf("Media conductividad: %f\n", mediaspH (lavapies, 25)/25);
+				printf("Media conductividad: %f\n", mediasturbidez (lavapies, 25)/25);
+				printf("Media conductividad: %f\n", mediascoliformes (lavapies, 25)/25);
+            	break;}
 
 
 
@@ -256,3 +269,80 @@ void buscarcoliforme(struct Tfuente lavapies[], int coliformes){
                                         printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
                         }else printf("No hay esa cantidad de colonias coliformes \n");
 }
+float mediac (struct Tfuente lavapies[], int dim) {
+	int i=0;
+	float media=0;
+	
+	FILE *fichero;
+	fichero = fopen("202301_Lavapies.txt", "r");
+
+	if (fichero == NULL) {
+		printf("Error, no puede abrir el fichero.\n");
+	
+	}
+	
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
+	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		media += lavapies[i].conductividad;
+	}
+
+	return (media);	
+}
+float mediapH (struct Tfuente lavapies[], int dim) {
+	int i=0;
+	float media=0;
+	
+	FILE *fichero;
+	fichero = fopen("202301_Lavapies.txt", "r");
+
+	if (fichero == NULL) {
+		printf("Error, no puede abrir el fichero.\n");
+	
+	}
+	
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
+	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		media += lavapies[i].pH;
+	}
+
+	return (media);	
+}
+float mediaturbidez(struct Tfuente lavapies[], int dim) {
+	int i=0;
+	float media=0;
+	
+	FILE *fichero;
+	fichero = fopen("202301_Lavapies.txt", "r");
+
+	if (fichero == NULL) {
+		printf("Error, no puede abrir el fichero.\n");
+	
+	}
+	
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
+	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		media += lavapies[i].pH;
+	}
+
+	return (media);	
+}
+float mediacoliformes(struct Tfuente lavapies[], int dim) {
+	int i=0;
+	float media=0;
+	
+	FILE *fichero;
+	fichero = fopen("202301_Lavapies.txt", "r");
+
+	if (fichero == NULL) {
+		printf("Error, no puede abrir el fichero.\n");
+	
+	}
+	
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
+	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		media += lavapies[i].pH;
+	}
+
+	return (media);	
+}
+
