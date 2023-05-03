@@ -15,7 +15,7 @@ void buscarph(struct Tfuente lavapies[], float);
 void buscarcond(struct Tfuente lavapies[],int);
 void buscarturb (struct Tfuente lavapies[],int);
 void buscarcoliforme (struct Tfuente lavapies[],int);
-float mediac(struct Tfuente lavapies[],int);
+float mediac(struct Tfuente lavap.ies[],int);
 float mediaspH(struct Tfuente lavapies[], int);
 float mediasturbidez(struct Tfuente lavapies[],int);
 float mediascoliformes(struct Tfuente lavapies[],int);
