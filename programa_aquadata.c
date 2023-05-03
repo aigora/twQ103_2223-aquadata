@@ -8,6 +8,7 @@ struct Tfuente{
 	int conductividad;
 	int turbidez;
 	int coliformes;
+	int puntos;
 };
 
 void buscarph(struct Tfuente lavapies[], float);
@@ -15,12 +16,9 @@ void buscarcond(struct Tfuente lavapies[],int);
 void buscarturb (struct Tfuente lavapies[],int);
 void buscarcoliforme (struct Tfuente lavapies[],int);
 float mediac(struct Tfuente lavapies[],int);
-float mediapH(struct Tfuente lavapies[],int);
-float mediaturbidez(struct Tfuente lavapies[],int);
-float mediaccoliformes(struct Tfuente lavapies[],int);
-void rankingmejor(struct Tfuente lavapies[]);
-void rankingp(struct Tfuente lavapies[]);
-
+float mediaspH(struct Tfuente lavapies[], int);
+float mediasturbidez(struct Tfuente lavapies[],int);
+float mediascoliformes(struct Tfuente lavapies[],int);
 
 
 
@@ -28,6 +26,7 @@ int main () {
 	struct Tfuente lavapies[500];
 	int nfuentes;
 	char parametro;
+	char max[25];
 	int i,j;
 	int opcion;
 	char opciondato;
@@ -93,19 +92,55 @@ int main () {
                         buscarcoliforme(lavapies, coliformes);}
 
 //}while(parametro!='P' || parametro!='C' || parametro!='T' ||parametro!='F')
-				 
+
             break; // BREAK CASE B
             case 'e':
             case 'E':
-            	
+
+                  while(fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes)!= EOF){ //en el fscanf nunca se ponen \n
+                    if(lavapies[i].pH >= 6.8 && lavapies[i].pH <= 7.2){
+                        lavapies[i].puntos = 3;
+                    } else if(lavapies[i].pH > 7.2 && lavapies[i].pH <= 8){
+                        lavapies[i].puntos = 2;
+                    }else if(lavapies[i].pH >=6 && lavapies[i].pH < 6.8){
+                        lavapies[i].puntos = 1;
+                    }else {
+                        lavapies[i].puntos = 0;}
+                    if(lavapies[i].conductividad >= 190){
+                        lavapies[i].puntos += 3;
+                    } else if (lavapies[i].conductividad >= 145){
+                        lavapies[i].puntos += 2;
+                    } else if (lavapies[i].conductividad >= 100){
+                        lavapies[i].puntos += 1;
+                    }else {
+                        lavapies[i].puntos += 0;
+                    }
+                    if(lavapies[i].turbidez == 0){
+                        lavapies[i].puntos += 3;
+                    }else if (lavapies[i].turbidez >= 1 && lavapies[i].turbidez <= 4){
+                        lavapies[i].puntos += 1;
+                    }else {
+                        lavapies[i].puntos += 0;}
+                    if(lavapies[i].coliformes == 0){
+                        lavapies[i].puntos += 3;
+                    }else {
+                        lavapies[i].puntos += 0;}
+                        }
+
+                    while(fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes)!= EOF){
+                        max = lavapies[1].puntos;
+                        for(i=1; i< 26; i++){
+                        if (max < lavapies[i].puntos){
+                            max = lavapies[i].fuente;
+                            lavapies[i].fuente = i;
+                }
+    }
+            printf("El maximo de puntos es %s, de la fuente %s", max, lavapies[i].fuente);}
+
             	printf("Media conductividad: %f\n", mediac (lavapies, 25)/25);
             	printf("Media conductividad: %f\n", mediaspH (lavapies, 25)/25);
 				printf("Media conductividad: %f\n", mediasturbidez (lavapies, 25)/25);
 				printf("Media conductividad: %f\n", mediascoliformes (lavapies, 25)/25);
-				printf("Ranking Top 3 mejores fuentes en funcion de todos los parametros,\n");
-				rankingmejor(lavapies);
-				printf("Ranking Top 3 peores fuentes en funcion de todos los parametros,\n");
-				rankingp(lavapies);
             	break;}
 
 
@@ -128,12 +163,7 @@ int main () {
 }
 void buscarph(struct Tfuente lavapies[], float ph){
                         int i=0;
-                        FILE *ficherodado;
-                        ficherodado = fopen("202301_Lavapies.txt", "r"); // Modo: "r" "w" (hay otros modos)
 
-                        if (ficherodado == NULL) {
-                        printf("Error, no puede abrir el fichero.\n");
-                        }
                         if(ph>=6 && ph<=6.5){
                             printf("Las fuentes con un ph mas cercanas a %f que se encuentran entre 6 y 6.5 son:\n", ph);
                            while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
@@ -167,25 +197,25 @@ void buscarcond(struct Tfuente lavapies[],int conductividad){
                         printf("Error, no puede abrir el fichero.\n");
                         }
                         if(conductividad>=100 && conductividad<=150){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 100 y 125 son:\n", conductividad);
+                            printf("Las conductividades mas cercanas de %d que se encuentran entre 100 y 150 son:\n", conductividad);
                            while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
                               if (lavapies[i].conductividad >=100 && lavapies[i].conductividad<=150)
                                 printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
 
                         }else if(conductividad>150 && conductividad<=200){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 125 y 150 son\n", conductividad);
+                            printf("Las conductividades mas cercanas de %d que se encuentran entre 150 y 200 son\n", conductividad);
                            while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
                               if (lavapies[i].conductividad >=150 && lavapies[i].conductividad<=200)
                                 printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}
 
                         } else if(conductividad>200 && conductividad<=250){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 150 y 175 son\n", conductividad);
+                            printf("Las conductividades mas cercanas de %d que se encuentran entre 200 y 250 son\n", conductividad);
                            while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
                               if (lavapies[i].conductividad >=200 && lavapies[i].conductividad<=250)
                                 printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}}
 
                         else if(conductividad>250 && conductividad<=300){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 175 y 200 son\n", conductividad);
+                            printf("Las conductividades mas cercanas de %d que se encuentran entre 250 y 300 son\n", conductividad);
                            while (fscanf(ficherodado, "%s %f %d %d %d", lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, &lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
                               if (lavapies[i].conductividad >=250 && lavapies[i].conductividad<=300)
                                 printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);}}
@@ -280,125 +310,76 @@ void buscarcoliforme(struct Tfuente lavapies[], int coliformes){
 float mediac (struct Tfuente lavapies[], int dim) {
 	int i=0;
 	float media=0;
-	
+
 	FILE *fichero;
 	fichero = fopen("202301_Lavapies.txt", "r");
 
 	if (fichero == NULL) {
 		printf("Error, no puede abrir el fichero.\n");
-	
+
 	}
-	
-	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
+
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad,
 	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
 		media += lavapies[i].conductividad;
 	}
 
-	return (media);	
+	return (media);
 }
-float mediapH (struct Tfuente lavapies[], int dim) {
+float mediaspH (struct Tfuente lavapies[], int dim) {
 	int i=0;
 	float media=0;
-	
+
 	FILE *fichero;
 	fichero = fopen("202301_Lavapies.txt", "r");
 
 	if (fichero == NULL) {
 		printf("Error, no puede abrir el fichero.\n");
-	
+
 	}
-	
-	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
+
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad,
 	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
 		media += lavapies[i].pH;
 	}
 
-	return (media);	
+	return (media);
 }
-float mediaturbidez(struct Tfuente lavapies[], int dim) {
+float mediasturbidez(struct Tfuente lavapies[], int dim) {
 	int i=0;
 	float media=0;
-	
+
 	FILE *fichero;
 	fichero = fopen("202301_Lavapies.txt", "r");
 
 	if (fichero == NULL) {
 		printf("Error, no puede abrir el fichero.\n");
-	
-	}
-	
-	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
-	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
-		media += lavapies[i].pH;
+
 	}
 
-	return (media);	
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad,
+	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		media += lavapies[i].turbidez;
+	}
+
+	return (media);
 }
-float mediacoliformes(struct Tfuente lavapies[], int dim) {
+float mediascoliformes(struct Tfuente lavapies[], int dim) {
 	int i=0;
 	float media=0;
-	
+
 	FILE *fichero;
 	fichero = fopen("202301_Lavapies.txt", "r");
 
 	if (fichero == NULL) {
 		printf("Error, no puede abrir el fichero.\n");
-	
-	}
-	
-	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
-	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
-		media += lavapies[i].pH;
+
 	}
 
-	return (media);	
+	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad,
+	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
+		media += lavapies[i].coliformes;
+	}
+
+	return (media);
 }
-void rankingmejor(struct Tfuente lavapies[]){
-	int i=0;
-	float media=0;
-	
-	FILE *fichero;
-	fichero = fopen("202301_Lavapies.txt", "r");
-
-	if (fichero == NULL) {
-		printf("Error, no puede abrir el fichero.\n");
-	
-	}
-	
-	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
-	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
-		//mejor ph mas cerca de 7, mayoe conductividad, y turbidez y colonias 0
-		int mejorph;
-		if(lavapies[i].turbidez==0 && lavapies[i].coliformes==0){
-			if(lavapies[i].pH<=7.2 && lavapies[i].pH>6.8){
-				if(lavapies[i].conductividad>190 && lavapies[i].conductividad<=269){
-					printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);
-				
-			}
-		}}}}
-void rankingp(struct Tfuente lavapies[]){
-	int i=0;
-	float media=0;
-	
-	FILE *fichero;
-	fichero = fopen("202301_Lavapies.txt", "r");
-
-	if (fichero == NULL) {
-		printf("Error, no puede abrir el fichero.\n");
-	
-	}
-	
-	while (fscanf(fichero, "%s %f %d %d %d %d %f", &lavapies[i].fuente, &lavapies[i].pH, &lavapies[i].conductividad, 
-	&lavapies[i].turbidez, &lavapies[i].coliformes) != EOF){
-		if(lavapies[i].turbidez>0 && lavapies[i].coliformes>0){
-			if(lavapies[i].pH>7.2 && lavapies[i].pH<6.8){
-				if(lavapies[i].conductividad<190 ){
-					printf("%s %f %d %d %d\n", lavapies[i].fuente, lavapies[i].pH, lavapies[i].conductividad, lavapies[i].turbidez, lavapies[i].coliformes);
-				
-			}
-		}}}}
-	
-	
-	
-
-
