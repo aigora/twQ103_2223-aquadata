@@ -10,6 +10,12 @@ struct Tfuente{
 	int coliformes;
 	int puntos;
 };
+struct Tpuntos{
+	int puntos1;
+	int puntos2;
+	int puntos3;
+	
+};
 
 void buscarph(struct Tfuente barrio[], float);
 void buscarcond(struct Tfuente barrio[],int);
@@ -24,6 +30,9 @@ float mediascoliformes(struct Tfuente barrio[],int);
 
 int main () {
 	struct Tfuente barrio[500];
+	struct Tpuntos ranking[500];
+	struct Tfuente mejorfuente;
+	struct Tfuente peorfuente;
 	int nfuentes;
 	char parametro;
 	char max[25];
@@ -106,49 +115,48 @@ break;
             	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parámetro de la fuente y un ranking de Las 3 mejores y Las 3 peores fuentes");
             	for(i=1;i<=25;i++){
                     if(barrio[i].pH >= 6.8 && barrio[i].pH <= 7.2){
-                        barrio[i].puntos = 3;
+                       ranking[i].puntos1=3;
                     } else if(barrio[i].pH > 7.2 && barrio[i].pH <= 8){
-                        barrio[i].puntos = 2;
+                        ranking[i].puntos1 = 2;
                     }else if(barrio[i].pH >=6 && barrio[i].pH < 6.8){
-                        barrio[i].puntos = 1;
+                        ranking[i].puntos1 = 1;
                     }else {
-                        barrio[i].puntos = 0;}
+                        ranking[i].puntos1= 0;}
                     if(barrio[i].conductividad >= 190){
-                        barrio[i].puntos += 3;
+                        ranking[i].puntos2= 3;
                     } else if (barrio[i].conductividad >= 145){
-                        barrio[i].puntos += 2;
+                         ranking[i].puntos2= 2;
                     } else if (barrio[i].conductividad >= 100){
-                        barrio[i].puntos += 1;
+                         ranking[i].puntos2= 1;
                     }else {
-                        barrio[i].puntos += 0;
+                         ranking[i].puntos2= 0;
                     }
                     if(barrio[i].turbidez == 0){
-                        barrio[i].puntos += 3;
+                        ranking[i].puntos3= 3;
                     }else if (barrio[i].turbidez >= 1 && barrio[i].turbidez <= 4){
-                        barrio[i].puntos += 1;
+                        ranking[i].puntos3= 1;
                     }else {
-                        barrio[i].puntos += 0;}
+                        ranking[i].puntos3= 0;}
                     if(barrio[i].coliformes == 0){
-                        barrio[i].puntos += 3;
+                         ranking[i].puntos3= 3;
                     }else {
-                        barrio[i].puntos += 0;}
+                         ranking[i].puntos3= 0;}
                         }
 
-                   /* max =puntos;
-                       for(i=1; i< 26; i++){
-                        if (max < barrio[i].puntos){
-                            max = barrio[i].fuente;
-                            barrio[i].fuente = i;
+                   mejorfuente = barrio[0];
+                       for(i=1; i<26; i++){
+                        if (mejorfuente.fuente  < ranking[i].puntos1+ranking[i].puntos2+ranking[i].puntos3){
+                            mejorfuente = barrio[i];
                 }
-    }*/
-           // printf("El maximo de puntos es %s, de la fuente %s", max, barrio[i].fuente);
+    }
+           printf("La mejor fuente es %s", barrio[i].fuente);
 
             	printf("Media conductividad: %f\n", mediac (barrio, 25)/25);
             	printf("Media conductividad: %f\n", mediaspH (barrio, 25)/25);
 				printf("Media conductividad: %f\n", mediasturbidez (barrio, 25)/25);
 				printf("Media conductividad: %f\n", mediascoliformes (barrio, 25)/25);
             	break;
-            }}while ( opciondato != 'B' && opciondato != 'E');
+           } }while ( opciondato != 'B' && opciondato != 'E');
 break;
 		case 2:
 			printf("bien 2");
