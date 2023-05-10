@@ -13,19 +13,6 @@ struct Tfuente{
 	int puntos3;
 	int ptotal;
 };
-/*
-struct Tpuntos{
-    char fuente[10];
-	float pH;
-	int conductividad;
-	int turbidez;
-	int coliformes;
-	int puntos1;
-	int puntos2;
-	int puntos3;
-	int ptotal;
-
-};*/
 
 void buscarph(struct Tfuente barrio[], float);
 void buscarcond(struct Tfuente barrio[],int);
@@ -35,8 +22,6 @@ float mediac(struct Tfuente barrio[],int);
 float mediaspH(struct Tfuente barrio[], int);
 float mediasturbidez(struct Tfuente barrio[],int);
 float mediascoliformes(struct Tfuente barrio[],int);
-
-
 
 int main () {
 	struct Tfuente barrio[500];
@@ -69,7 +54,7 @@ int main () {
 	printf("Introduce la opcion que desee\n");
 	printf("1: Buscar Datos de la fuente\n");
 	printf("2: Anadir otra fuente\n");
-	printf("3: Información\n");
+	printf("3: Informacion\n");
 	printf("4: Salir del programa\n");
 	scanf("%d", &opcion);
 
@@ -122,7 +107,7 @@ break;
           break;
             case 'e':
             case 'E':
-            	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parámetro de la fuente y un ranking de Las 3 mejores y Las 3 peores fuentes");
+            	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parámetro de la fuente y un ranking de la mejor y la peor fuente\n");
             	for(i=1;i<25;i++){
                     if(barrio[i].pH >= 6.8 && barrio[i].pH <= 7.2){
                        barrio[i].puntos1=3;
@@ -154,13 +139,24 @@ break;
                          barrio[i].ptotal = barrio[i].puntos1 + barrio[i].puntos2 + barrio[i].puntos3;
                         }
 
-
                     mejorfuente = barrio[0];
                        for(i=1; i< 26; i++){
                         if (mejorfuente.ptotal  < barrio[i].ptotal){
-                            mejorfuente=barrio[i];}
+                            mejorfuente=barrio[i];
+                            }
                         }
-            printf("El maximo de puntos es %d, %s\n", mejorfuente.ptotal, mejorfuente.fuente);
+
+                    printf("La mejor fuente es la %s con %d puntos.\n", mejorfuente.fuente, mejorfuente.ptotal);
+
+                    peorfuente = barrio[0];
+                       for(i=1; i< 26; i++){
+                        if (peorfuente.ptotal  > barrio[i].ptotal){
+                            peorfuente=barrio[i];
+                            }
+                        }
+
+                    printf("La peor fuente es la %s con %d puntos.\n", peorfuente.fuente, peorfuente.ptotal);
+
 
             	printf("Media conductividad: %f\n", mediac (barrio, 25)/25);
             	printf("Media conductividad: %f\n", mediaspH (barrio, 25)/25);
@@ -187,8 +183,6 @@ break;
 	if(opcion == 4){
 		return 0;}
 }//corchetes del int main
-
-
 
 void buscarph(struct Tfuente barrio[], float ph){
                         int i=0;
