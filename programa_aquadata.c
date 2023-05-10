@@ -1,7 +1,6 @@
 // TRABAJO INFORMÁTICA
 #include <stdio.h>
 #include <string.h>
-#define TAM_FUENTE 25
 
 struct Tfuente{
 	char fuente[10];
@@ -15,10 +14,10 @@ struct Tfuente{
 	int ptotal;
 };
 
-void buscarph(struct Tfuente barrio[], float);
-void buscarcond(struct Tfuente barrio[],int);
-void buscarturb (struct Tfuente barrio[],int);
-void buscarcoliforme (struct Tfuente barrio[],int);
+void buscarph(struct Tfuente barrio[], float, int);
+void buscarcond(struct Tfuente barrio[],int, int);
+void buscarturb (struct Tfuente barrio[],int, int);
+void buscarcoliforme (struct Tfuente barrio[],int, int);
 float mediac(struct Tfuente barrio[],int);
 float mediaspH(struct Tfuente barrio[], int);
 float mediasturbidez(struct Tfuente barrio[],int);
@@ -33,7 +32,7 @@ int main () {
 	char parametro;
 	char max[25];
 	int i,j;
-	int opcion;
+	int opcion, fnuevas;
 	char opciondato;
 	float ph1;
 	int conductividad, turbidez, coliformes;
@@ -41,6 +40,7 @@ int main () {
 	FILE *fsalida;
 	int puntos=0;
 	int nespecies;
+	int TAM_FUENTE;
 	char nconductividad[20], nturbidez[20], ncoliformes[20], npH[20], nparametro[20];
 	fentrada = fopen("202301_Lavapies.txt", "r");
 	if (fentrada == NULL) {
@@ -49,9 +49,12 @@ int main () {
 	}
 	fscanf(fentrada, "%s %s %s %s %s",  nparametro, npH, nconductividad, nturbidez, ncoliformes);
 	i=0;
+	TAM_FUENTE=0;
 	 while(fscanf(fentrada, "%s %f %d %d %d", barrio[i].fuente, &barrio[i].pH, &barrio[i].conductividad, &barrio[i].turbidez, &barrio[i].coliformes)!= EOF){
 		i++;
+		TAM_FUENTE++;
 	}
+	
 	fclose(fentrada);
 
 	do{
@@ -90,22 +93,22 @@ int main () {
             	if (parametro == 'P'){
             			printf("Introduce el pH del agua buscado que se encuentra entre 6 y 8\n");
             			scanf("%f", &ph1);
-                        buscarph(barrio, ph1);}
+                        buscarph(barrio, ph1, TAM_FUENTE);}
 
 	 			else if(parametro=='C'){
 	 				printf("Introduce la conductIvidad del agua buscada que se encuentra entre 100 y 300\n");
             			scanf("%d", &conductividad);
-                        buscarcond(barrio, conductividad);}
+                        buscarcond(barrio, conductividad, TAM_FUENTE);}
 
                 else if(parametro=='T'){
 	 				printf("Introduce la turbidez del agua buscada que se encuentra entre 0 y 10\n");
             			scanf("%d", &turbidez);
-                        buscarturb(barrio, turbidez);}
+                        buscarturb(barrio, turbidez, TAM_FUENTE);}
 
                 else if(parametro=='F'){
 	 				printf("Introduce la turbidez del agua buscada que se encuentra entre 0 y 2\n");
             			scanf("%d", &coliformes);
-                        buscarcoliforme(barrio, coliformes);}
+                        buscarcoliforme(barrio, coliformes, TAM_FUENTE);}
 break;
 }while(parametro!='P' || parametro!='C' || parametro!='T' ||parametro!='F');
 
@@ -171,7 +174,34 @@ break;
            } }while ( opciondato != 'B' && opciondato != 'E');
 break;
 		case 2:
-			printf("");
+			
+			printf("Introduce el numero de fuentes que quieres anadir\n");
+			scanf("%d", &fnuevas);
+			
+			for(i=TAM_FUENTE; i<=fnuevas; i++){
+				printf("Introduce el ph de la fuente %d", i);
+				scanf("%f", &barrio[i].pH);
+				printf("Introduce la conductividad de la fuente %d", i);
+				scanf("%f", &barrio[i].conductividad);
+				printf("Introduce la turbidez de la fuente %d", i);
+				scanf("%f", &barrio[i].turbidez);
+				printf("Introduce el numero de colonias coliformes de la fuente %d", i);
+				scanf("%f",  &barrio[i].coliformes);
+			}
+			
+		fsalida=fopen("202301_Lavapies.txt", "w"); //modo escritura
+		if(fsalida==NULL){
+		printf("Error, no puede crear el fichero.\n");
+		return 0;
+	}
+	//PASO 2:Escribir el archivo
+	
+	for(i=0;)
+	fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
+	fprintf(fsalida,"Nota maxima es: %f", notaMax);
+	
+	//PASO3: Cerrar el archivo
+	fclose(fsalida);
 
 
 			break;
@@ -232,7 +262,7 @@ break;
 		return 0;}
 }//corchetes del int main
 
-void buscarph(struct Tfuente barrio[], float ph){
+void buscarph(struct Tfuente barrio[], float ph, int TAM_FUENTE){
                         int i=0;
 
                         if(ph>=6 && ph<=6.5){
@@ -259,7 +289,7 @@ void buscarph(struct Tfuente barrio[], float ph){
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}}
 
 
-void buscarcond(struct Tfuente barrio[],int conductividad){
+void buscarcond(struct Tfuente barrio[],int conductividad, int TAM_FUENTE){
 	int i=0;
 
                         if(conductividad>=100 && conductividad<=150){
@@ -290,7 +320,7 @@ void buscarcond(struct Tfuente barrio[],int conductividad){
 
 }
 
-void buscarturb (struct Tfuente barrio[],int turbidez){
+void buscarturb (struct Tfuente barrio[],int turbidez, int TAM_FUENTE){
                         int i=0;
 
                         if(turbidez == 0){
@@ -347,7 +377,7 @@ void buscarturb (struct Tfuente barrio[],int turbidez){
 
 
 
-void buscarcoliforme(struct Tfuente barrio[], int coliformes){
+void buscarcoliforme(struct Tfuente barrio[], int coliformes, int TAM_FUENTE){
                         int i=0;
 
 
