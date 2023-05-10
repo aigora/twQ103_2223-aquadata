@@ -10,15 +10,17 @@ struct Tfuente{
 	int coliformes;
 };
 
-struct TPuntos{
-    char fuente[10];
-    int puntos;
-};
 struct Tpuntos{
+    char fuente[10];
+	float pH;
+	int conductividad;
+	int turbidez;
+	int coliformes;
 	int puntos1;
 	int puntos2;
 	int puntos3;
-	
+	int ptotal;
+
 };
 
 void buscarph(struct Tfuente barrio[], float);
@@ -35,10 +37,8 @@ float mediascoliformes(struct Tfuente barrio[],int);
 int main () {
 	struct Tfuente barrio[500];
 	struct Tpuntos ranking[500];
-	struct Tfuente mejorfuente;
-	struct Tfuente peorfuente;
-	//struct TPuntos ranking[500];
-	//struct TPuntos mejorfuente[500];
+	struct Tpuntos mejorfuente;
+	struct Tpuntos peorfuente;
 	int nfuentes;
 	char parametro;
 	char max[25];
@@ -119,78 +119,46 @@ break;
             case 'e':
             case 'E':
             	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parámetro de la fuente y un ranking de Las 3 mejores y Las 3 peores fuentes");
-            	/*for(i=1;i<=25;i++){
-                    if(barrio[i].pH >= 6.8 && barrio[i].pH <= 7.2){
+            	for(i=1;i<=25;i++){
+                    if(ranking[i].pH >= 6.8 && ranking[i].pH <= 7.2){
                        ranking[i].puntos1=3;
-                    } else if(barrio[i].pH > 7.2 && barrio[i].pH <= 8){
+                    } else if(ranking[i].pH > 7.2 && ranking[i].pH <= 8){
                         ranking[i].puntos1 = 2;
-                    }else if(barrio[i].pH >=6 && barrio[i].pH < 6.8){
+                    }else if(ranking[i].pH >=6 && ranking[i].pH < 6.8){
                         ranking[i].puntos1 = 1;
                     }else {
                         ranking[i].puntos1= 0;}
-                    if(barrio[i].conductividad >= 190){
+                    if(ranking[i].conductividad >= 190){
                         ranking[i].puntos2= 3;
-                    } else if (barrio[i].conductividad >= 145){
+                    } else if (ranking[i].conductividad >= 145){
                          ranking[i].puntos2= 2;
-                    } else if (barrio[i].conductividad >= 100){
+                    } else if (ranking[i].conductividad >= 100){
                          ranking[i].puntos2= 1;
                     }else {
                          ranking[i].puntos2= 0;
                     }
-                    if(barrio[i].turbidez == 0){
+                    if(ranking[i].turbidez == 0){
                         ranking[i].puntos3= 3;
-                    }else if (barrio[i].turbidez >= 1 && barrio[i].turbidez <= 4){
+                    }else if (ranking[i].turbidez >= 1 && ranking[i].turbidez <= 4){
                         ranking[i].puntos3= 1;
                     }else {
                         ranking[i].puntos3= 0;}
-                    if(barrio[i].coliformes == 0){
+                    if(ranking[i].coliformes == 0){
                          ranking[i].puntos3= 3;
                     }else {
                          ranking[i].puntos3= 0;}
+                         ranking[i].ptotal = ranking[i].puntos1 + ranking[i].puntos2 + ranking[i].puntos3;
                         }
 
-                   mejorfuente = barrio[0];
-                       for(i=1; i<26; i++){
-                        if (mejorfuente.fuente  < ranking[i].puntos1+ranking[i].puntos2+ranking[i].puntos3){
-                            mejorfuente = barrio[i];
-                }
-    }
-           printf("La mejor fuente es %s", barrio[i].fuente);
-                        ranking[i].puntos = 3;
-                    } else if(barrio[i].pH > 7.2 && barrio[i].pH <= 8){
-                        ranking[i].puntos = 2;
-                    }else if(barrio[i].pH >=6 && barrio[i].pH < 6.8){
-                        ranking[i].puntos = 1;
-                    }else {
-                        ranking[i].puntos = 0;}
-                    if(barrio[i].conductividad >= 190){
-                        ranking[i].puntos += 3;
-                    } else if (barrio[i].conductividad >= 145){
-                        ranking[i].puntos += 2;
-                    } else if (barrio[i].conductividad >= 100){
-                        ranking[i].puntos += 1;
-                    }else {
-                        ranking[i].puntos += 0;
-                    }
-                    if(barrio[i].turbidez == 0){
-                        ranking[i].puntos += 3;
-                    }else if (barrio[i].turbidez >= 1 && barrio[i].turbidez <= 4){
-                        ranking[i].puntos += 1;
-                    }else {
-                        ranking[i].puntos += 0;}
-                    if(barrio[i].coliformes == 0){
-                        ranking[i].puntos += 3;
-                    }else {
-                        ranking[i].puntos += 0;}
-                        }
+
                     mejorfuente = ranking[0];
                        for(i=1; i< 26; i++){
-                        if (mejorfuente.puntos < ranking[i].puntos){
+                        if (mejorfuente.ptotal < ranking[i].ptotal){
                             mejorfuente = ranking[i].fuente;
                             ranking[i].fuente = i;
                 }
     }
-            printf("El maximo de puntos es %s, de la fuente %s", mejorfuente.fuente, mejorfuente.ranking);*/
+            printf("El maximo de puntos es %s, de la fuente %s", mejorfuente.fuente, mejorfuente.ranking);
 
             	printf("Media conductividad: %f\n", mediac (barrio, 25)/25);
             	printf("Media conductividad: %f\n", mediaspH (barrio, 25)/25);
@@ -217,6 +185,9 @@ break;
 	if(opcion == 4){
 		return 0;}
 }//corchetes del int main
+
+
+
 void buscarph(struct Tfuente barrio[], float ph){
                         int i=0;
 
