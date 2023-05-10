@@ -14,6 +14,33 @@ struct Tfuente{
 	int ptotal;
 };
 
+struct TJugador {
+    char nombre[50];
+    char contrasenya[50];
+};
+
+void banner () {
+//printf("                  AAA                 QQQQQQQQQ     UUUUUUUU     UUUUUUUU           AAA               DDDDDDDDDDDDD                  AAA         TTTTTTTTTTTTTTTTTTTTTTT         AAA               \n");
+//printf("                 A:::A              QQ:::::::::QQ   U::::::U     U::::::U          A:::A              D::::::::::::DDD              A:::A        T:::::::::::::::::::::T        A:::A              \n");
+//printf("                A:::::A           QQ:::::::::::::QQ U::::::U     U::::::U         A:::::A             D:::::::::::::::DD           A:::::A       T:::::::::::::::::::::T       A:::::A             \n");
+//printf("               A:::::::A         Q:::::::QQQ:::::::Q U:::::U     U:::::UU        A:::::::A            DDD:::::DDDDD:::::D         A:::::::A      T:::::TT:::::::TT:::::T      A:::::::A            \n");
+printf("              A:::::::::A        Q::::::O   Q::::::Q U:::::U     U:::::U        A:::::::::A             D:::::D    D:::::D       A:::::::::A     TTTTTT  T:::::T  TTTTTT     A:::::::::A           \n");
+printf("             A:::::A:::::A       Q:::::O     Q:::::Q U:::::D     D:::::U       A:::::A:::::A            D:::::D     D:::::D     A:::::A:::::A            T:::::T            A:::::A:::::A          \n");
+printf("            A:::::A A:::::A      Q:::::O     Q:::::Q U:::::D     D:::::U      A:::::A A:::::A           D:::::D     D:::::D    A:::::A A:::::A           T:::::T           A:::::A A:::::A         \n");
+printf("           A:::::A   A:::::A     Q:::::O     Q:::::Q U:::::D     D:::::U     A:::::A   A:::::A          D:::::D     D:::::D   A:::::A   A:::::A          T:::::T          A:::::A   A:::::A        \n");
+printf("          A::::::A     A::::A    Q:::::O     Q:::::Q U:::::D     D:::::U    A:::::A     A:::::A         D:::::D     D:::::D  A:::::A     A:::::A         T:::::T         A:::::A     A:::::A       \n");
+printf("         A:::::AAAAAAAAA:::::A   Q:::::O     Q:::::Q U:::::D     D:::::U   A:::::AAAAAAAAA:::::A        D:::::D     D:::::D A:::::AAAAAAAAA:::::A        T:::::T        A:::::AAAAAAAAA:::::A      \n");
+printf("        A:::::::::::::::::::::A  Q:::::O  QQQQ:::::Q U:::::D     D:::::U  A:::::::::::::::::::::A       D:::::D     D:::::DA:::::::::::::::::::::A       T:::::T       A:::::::::::::::::::::A     \n");
+printf("       A:::::AAAAAAAAAAAAA:::::A Q::::::O Q::::::::Q U::::::U   U::::::U A:::::AAAAAAAAAAAAA:::::A      D:::::D    D:::::DA:::::AAAAAAAAAAAAA:::::A      T:::::T      A:::::AAAAAAAAAAAAA:::::A    \n");
+printf("      A:::::A             A:::::AQ:::::::QQ::::::::Q U:::::::UUU:::::::UA:::::A             A:::::A   DDD:::::DDDDD:::::DA:::::A             A:::::A   TT:::::::TT   A:::::A             A:::::A   \n");
+printf("     A:::::A               A:::::AQQ::::::::::::::Q   UU:::::::::::::UUA:::::A               A:::::A  D:::::::::::::::DDA:::::A               A:::::A  T:::::::::T  A:::::A               A:::::A  \n");
+printf("    A:::::A                 A:::::A QQ:::::::::::Q      UU:::::::::UU A:::::A                 A:::::A D::::::::::::DDD A:::::A                 A:::::A T:::::::::T A:::::A                 A:::::A \n");
+printf("   AAAAAAA                   AAAAAAA  QQQQQQQQ::::QQ      UUUUUUUUU  AAAAAAA                   AAAAAAADDDDDDDDDDDDD   AAAAAAA                   AAAAAAATTTTTTTTTTTAAAAAAA                   AAAAAAA\n");
+printf("                                           Q:::::Q                                                                                                                                                 \n");
+printf("                                            QQQQQQ                                                                                                                                                 \n");
+    return;
+}
+
 void buscarph(struct Tfuente barrio[], float);
 void buscarcond(struct Tfuente barrio[],int);
 void buscarturb (struct Tfuente barrio[],int);
@@ -25,19 +52,21 @@ float mediascoliformes(struct Tfuente barrio[],int);
 
 int main () {
 	struct Tfuente barrio[500];
-	//struct Tpuntos ranking[500];
+	struct TJugador usuario[200];
 	struct Tfuente mejorfuente;
 	struct Tfuente peorfuente;
-	int nfuentes;
+	int nfuentes, resultado;
 	char parametro;
 	char max[25];
 	int i,j;
+	int usuarios;
 	int opcion;
-	char opciondato;
+	char opciondato, nombre[20], contrasenya[20];
 	float ph1;
 	int conductividad, turbidez, coliformes;
 	FILE *fentrada;
 	FILE *fsalida;
+	FILE * pDatosUsuarios;
 	int puntos=0;
 	char nconductividad[20], nturbidez[20], ncoliformes[20], npH[20], nparametro[20];
 	fentrada = fopen("202301_Lavapies.txt", "r");
@@ -53,6 +82,37 @@ int main () {
 	fclose(fentrada);
 
 	do{
+        pDatosUsuarios = fopen("profesores.txt","r");
+        if (pDatosUsuarios == NULL){
+            printf ("Error en la apertura de fichero\n");
+            return 0;
+        }
+    while (fscanf(pDatosUsuarios, "%s %s", usuario[i].nombre, usuario[i].contrasenya)!=EOF){
+        printf("%s %s\n", usuario[i].nombre, usuario[i].contrasenya);
+        i++;
+    }
+    usuarios = i;
+    fclose(pDatosUsuarios);
+
+    banner();
+
+    printf("                   Iniciar Sesi%cn\n                   Usuario:", 162);
+    scanf("%s", nombre);
+    fflush(stdin);
+    printf("                   Contrase%ca:", 164);
+    scanf("%s", contrasenya);
+
+
+    for(i=0;i<usuarios;i++){
+    resultado=strcmp(nombre,usuario[i].nombre);
+
+    printf("\n%d", resultado);
+        if(resultado==0){
+            printf("Eres profesor\n");
+            return 0;
+        } else {
+            printf("Eres alumno\n");}}
+
 
 	printf("Introduce la opcion que desee\n");
 	printf("1: Buscar Datos de la fuente\n");
@@ -111,7 +171,7 @@ break;
             case 'e':
             case 'E':
             	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parámetro de la fuente y un ranking de la mejor y la peor fuente\n");
-            	for(i=1;i<25;i++){
+            	for(i=0;i<25;i++){
                     if(barrio[i].pH >= 6.8 && barrio[i].pH <= 7.2){
                        barrio[i].puntos1=3;
                     } else if(barrio[i].pH > 7.2 && barrio[i].pH <= 8){
@@ -143,7 +203,7 @@ break;
                         }
 
                     mejorfuente = barrio[0];
-                       for(i=1; i< 26; i++){
+                       for(i=0; i< 25; i++){
                         if (mejorfuente.ptotal  < barrio[i].ptotal){
                             mejorfuente=barrio[i];
                             }
@@ -152,7 +212,7 @@ break;
                     printf("La mejor fuente es la %s con %d puntos.\n", mejorfuente.fuente, mejorfuente.ptotal);
 
                     peorfuente = barrio[0];
-                       for(i=1; i< 26; i++){
+                       for(i=0; i< 25; i++){
                         if (peorfuente.ptotal  > barrio[i].ptotal){
                             peorfuente=barrio[i];
                             }
