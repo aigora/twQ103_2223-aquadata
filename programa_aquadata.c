@@ -39,11 +39,14 @@ int main () {
 	FILE *fentrada;
 	FILE *fsalida;
 	int puntos=0;
+	char nconductividad[20], nturbidez[20], ncoliformes[20], npH[20], nparametro[20];
 	fentrada = fopen("202301_Lavapies.txt", "r");
 	if (fentrada == NULL) {
 		printf("Error, no puede abrir el fichero.\n");
 		return 0;
 	}
+	fscanf(fentrada, "%s %s %s %s %s",  nparametro, npH, nconductividad, nturbidez, ncoliformes);
+	i=0;
 	 while(fscanf(fentrada, "%s %f %d %d %d", barrio[i].fuente, &barrio[i].pH, &barrio[i].conductividad, &barrio[i].turbidez, &barrio[i].coliformes)!= EOF){
 		i++;
 	}
