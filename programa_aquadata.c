@@ -14,6 +14,34 @@ struct Tfuente{
 	int ptotal;
 };
 
+struct TJugador {
+    char nombre[50];
+    char contrasenya[50];
+};
+
+void banner () {
+//printf("                  AAA                 QQQQQQQQQ     UUUUUUUU     UUUUUUUU           AAA               DDDDDDDDDDDDD                  AAA         TTTTTTTTTTTTTTTTTTTTTTT         AAA               \n");
+//printf("                 A:::A              QQ:::::::::QQ   U::::::U     U::::::U          A:::A              D::::::::::::DDD              A:::A        T:::::::::::::::::::::T        A:::A              \n");
+//printf("                A:::::A           QQ:::::::::::::QQ U::::::U     U::::::U         A:::::A             D:::::::::::::::DD           A:::::A       T:::::::::::::::::::::T       A:::::A             \n");
+//printf("               A:::::::A         Q:::::::QQQ:::::::Q U:::::U     U:::::UU        A:::::::A            DDD:::::DDDDD:::::D         A:::::::A      T:::::TT:::::::TT:::::T      A:::::::A            \n");
+printf("              A:::::::::A        Q::::::O   Q::::::Q U:::::U     U:::::U        A:::::::::A             D:::::D    D:::::D       A:::::::::A     TTTTTT  T:::::T  TTTTTT     A:::::::::A           \n");
+printf("             A:::::A:::::A       Q:::::O     Q:::::Q U:::::D     D:::::U       A:::::A:::::A            D:::::D     D:::::D     A:::::A:::::A            T:::::T            A:::::A:::::A          \n");
+printf("            A:::::A A:::::A      Q:::::O     Q:::::Q U:::::D     D:::::U      A:::::A A:::::A           D:::::D     D:::::D    A:::::A A:::::A           T:::::T           A:::::A A:::::A         \n");
+printf("           A:::::A   A:::::A     Q:::::O     Q:::::Q U:::::D     D:::::U     A:::::A   A:::::A          D:::::D     D:::::D   A:::::A   A:::::A          T:::::T          A:::::A   A:::::A        \n");
+printf("          A::::::A     A::::A    Q:::::O     Q:::::Q U:::::D     D:::::U    A:::::A     A:::::A         D:::::D     D:::::D  A:::::A     A:::::A         T:::::T         A:::::A     A:::::A       \n");
+printf("         A:::::AAAAAAAAA:::::A   Q:::::O     Q:::::Q U:::::D     D:::::U   A:::::AAAAAAAAA:::::A        D:::::D     D:::::D A:::::AAAAAAAAA:::::A        T:::::T        A:::::AAAAAAAAA:::::A      \n");
+printf("        A:::::::::::::::::::::A  Q:::::O  QQQQ:::::Q U:::::D     D:::::U  A:::::::::::::::::::::A       D:::::D     D:::::DA:::::::::::::::::::::A       T:::::T       A:::::::::::::::::::::A     \n");
+printf("       A:::::AAAAAAAAAAAAA:::::A Q::::::O Q::::::::Q U::::::U   U::::::U A:::::AAAAAAAAAAAAA:::::A      D:::::D    D:::::DA:::::AAAAAAAAAAAAA:::::A      T:::::T      A:::::AAAAAAAAAAAAA:::::A    \n");
+printf("      A:::::A             A:::::AQ:::::::QQ::::::::Q U:::::::UUU:::::::UA:::::A             A:::::A   DDD:::::DDDDD:::::DA:::::A             A:::::A   TT:::::::TT   A:::::A             A:::::A   \n");
+printf("     A:::::A               A:::::AQQ::::::::::::::Q   UU:::::::::::::UUA:::::A               A:::::A  D:::::::::::::::DDA:::::A               A:::::A  T:::::::::T  A:::::A               A:::::A  \n");
+printf("    A:::::A                 A:::::A QQ:::::::::::Q      UU:::::::::UU A:::::A                 A:::::A D::::::::::::DDD A:::::A                 A:::::A T:::::::::T A:::::A                 A:::::A \n");
+printf("   AAAAAAA                   AAAAAAA  QQQQQQQQ::::QQ      UUUUUUUUU  AAAAAAA                   AAAAAAADDDDDDDDDDDDD   AAAAAAA                   AAAAAAATTTTTTTTTTTAAAAAAA                   AAAAAAA\n");
+printf("                                           Q:::::Q                                                                                                                                                 \n");
+printf("                                            QQQQQQ                                                                                                                                                 \n");
+    return;
+}
+
+
 void buscarph(struct Tfuente barrio[], float, int);
 void buscarcond(struct Tfuente barrio[],int, int);
 void buscarturb (struct Tfuente barrio[],int, int);
@@ -25,19 +53,25 @@ float mediascoliformes(struct Tfuente barrio[],int);
 
 int main () {
 	struct Tfuente barrio[500];
-	//struct Tpuntos ranking[500];
 	struct Tfuente mejorfuente;
 	struct Tfuente peorfuente;
+	struct TJugador usuario[200];
 	int nfuentes;
+	int posicion, resultado3;
+	int EsProfesor=0;
+	int Contrasenyacorrecta=0;
 	char parametro;
 	char max[25];
 	int i,j;
 	int opcion, fnuevas;
-	char opciondato;
+	char opciondato, nombre[100], contrasenya[100];
+	int resultado1, resultado2;
+	int usuarios;
 	float ph1;
 	int conductividad, turbidez, coliformes;
 	FILE *fentrada;
 	FILE *fsalida;
+	FILE * pDatosUsuarios;
 	int puntos=0;
 	int nespecies;
 	int TAM_FUENTE;
@@ -54,17 +88,82 @@ int main () {
 		i++;
 		TAM_FUENTE++;
 	}
-	
+
 	fclose(fentrada);
 
 	do{
 
+            pDatosUsuarios = fopen("profesores.txt","r");
+        if (pDatosUsuarios == NULL){
+            printf ("Error en la apertura de fichero\n");
+            return 0;
+        }
+    i=0;
+    while (fscanf(pDatosUsuarios, "%s %s", usuario[i].nombre, usuario[i].contrasenya)!=EOF){
+        i++;
+    }
+    usuarios = i;
+    fclose(pDatosUsuarios);
+
+
+    printf("                   Iniciar Sesi%cn\n                   Usuario:", 162);
+    scanf("%s", nombre);
+    //fflush(stdin);
+    printf("                   Contrase%ca:", 164);
+    scanf("%s", contrasenya);
+
+
+    for(i=0;i<usuarios;i++){
+        resultado1=strcmp(nombre,usuario[i].nombre);
+        if(resultado1==0){
+            EsProfesor =1;
+            posicion = i;
+        }
+
+    }
+    if(EsProfesor==1){
+        resultado2=strcmp(contrasenya,usuario[posicion].contrasenya);
+        if(resultado2==0){
+            Contrasenyacorrecta = 1;
+            }}
+    if(Contrasenyacorrecta == 0){ //contrasenacorrecta = 0 FALSO
+        if (EsProfesor == 1){
+        do {
+        printf("Contraseña incorrecta vuelve a intentarlo\n");
+        printf("                   Contrase%ca:", 164);
+        scanf("%s", contrasenya);
+        resultado3=strcmp(contrasenya,usuario[posicion].contrasenya);
+        if(resultado3==1){
+            Contrasenyacorrecta = 1;
+            }
+        }   while (Contrasenyacorrecta == 1);
+        }
+        }
+
+
+        if (EsProfesor == 0){
+            printf("Entras como alumno\n");
+        }else if (Contrasenyacorrecta == 1){
+        printf("Contraseña correcta entras como profesor\n");
+    }
+
+    if(Contrasenyacorrecta == 1 && EsProfesor == 1){
 	printf("Introduce la opcion que desee\n");
 	printf("1: Buscar Datos de la fuente\n");
 	printf("2: Anadir otra fuente\n");
 	printf("3: Informacion\n");
 	printf("4: Salir del programa\n");
+	scanf("%d", &opcion);}
+
+	if(EsProfesor == 0 && Contrasenyacorrecta == 0){
+    do {
+	printf("Introduce la opcion que desee\n");
+	printf("1: Buscar Datos de la fuente\n");
+	printf("3: Informacion\n");
+	printf("4: Salir del programa\n");
 	scanf("%d", &opcion);
+	} while (opcion != 1 || opcion != 3 || opcion != 4);
+	}
 
 	switch(opcion){
 		case 1:
@@ -174,32 +273,34 @@ break;
            } }while ( opciondato != 'B' && opciondato != 'E');
 break;
 		case 2:
-			
+
 			printf("Introduce el numero de fuentes que quieres anadir\n");
 			scanf("%d", &fnuevas);
-			
+
 			for(i=TAM_FUENTE; i<=fnuevas; i++){
 				printf("Introduce el ph de la fuente %d", i);
 				scanf("%f", &barrio[i].pH);
 				printf("Introduce la conductividad de la fuente %d", i);
-				scanf("%f", &barrio[i].conductividad);
+				scanf("%d", &barrio[i].conductividad);
 				printf("Introduce la turbidez de la fuente %d", i);
-				scanf("%f", &barrio[i].turbidez);
+				scanf("%d", &barrio[i].turbidez);
 				printf("Introduce el numero de colonias coliformes de la fuente %d", i);
-				scanf("%f",  &barrio[i].coliformes);
+				scanf("%d",  &barrio[i].coliformes);
 			}
-			
+			//TAM_FUENTE
+
+
 		fsalida=fopen("202301_Lavapies.txt", "w"); //modo escritura
 		if(fsalida==NULL){
 		printf("Error, no puede crear el fichero.\n");
 		return 0;
 	}
 	//PASO 2:Escribir el archivo
-	
+
 	//for(i=0;)
 ////	fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
 //	fprintf(fsalida,"Nota maxima es: %f", notaMax);
-	
+
 	//PASO3: Cerrar el archivo
 	fclose(fsalida);
 
@@ -224,7 +325,7 @@ break;
             			printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
             	printf("No hay ninguna especie coliforme en estas fuentes.\n");
             	printf("Por lo tanto, los beneficios de no tener coliformes en las fuentes son múltiples, como una reducción en el riesgo de enfermedades transmitidas por el agua,\n");
-				printf("una mejora en la calidad del agua para uso recreativo y agrícola, y una mayor confianza en la seguridad del suministro de agua potable.\n"); 
+				printf("una mejora en la calidad del agua para uso recreativo y agrícola, y una mayor confianza en la seguridad del suministro de agua potable.\n");
 				printf("Además, la eliminación de los coliformes puede reducir los costos asociados con el tratamiento y la purificación del agua.\n");}
             else if(nespecies == 1){
             	 printf("Las fuentes que tienen %d especies son:\n. ", nespecies);
@@ -247,9 +348,9 @@ break;
 			printf("Algunas cepas de Enterococcus faecalis pueden ser resistentes a los antibióticos, lo que hace que las infecciones sean difíciles de tratar.\n");
 			printf("Además, la exposición a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre, insuficiencia renal y anemia hemolítica.\n");
 			printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua potable en estas fuentes y evitar la exposición a estos riesgos potenciales para la salud.\n");}
-            			
+
             else{
-			
+
 			 printf("No hay esa cantidad de colonias coliformes \n");}
 			break;
 
