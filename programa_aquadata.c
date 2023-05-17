@@ -196,9 +196,9 @@ break;
 	}
 	//PASO 2:Escribir el archivo
 	
-	for(i=0;)
-	fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
-	fprintf(fsalida,"Nota maxima es: %f", notaMax);
+	//for(i=0;)
+////	fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
+//	fprintf(fsalida,"Nota maxima es: %f", notaMax);
 	
 	//PASO3: Cerrar el archivo
 	fclose(fsalida);
