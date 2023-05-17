@@ -11,6 +11,6 @@ Daniel Blázquez Alejandro, cachopito
 
 ## Objetivos del trabajo
 
--Trabajar con los ficheros
--Utilizar vectores de estructuras y funciones
--Buscar datos de los ficheros y hacer estadísticas
+1. Trabajar con los ficheros
+2. Utilizar vectores de estructuras y funciones
+3. Buscar datos de los ficheros y hacer estadísticas
