@@ -4,10 +4,10 @@ Con este programa se puede iniciar sesión y dependiendo del tipo de usuario (pr
 
 ## Integrantes del equipo
 
-Laura Navarro Briz, lauranbriz; 
-Macarena Blázquez Alejandro, Macarenabfernandez; 
-Celia Vicente Hernández, celiavicente; 
-Daniel Blázquez Alejandro, cachopito
+1. Laura Navarro Briz, lauranbriz.
+2. Macarena Blázquez Alejandro, Macarenabfernandez.
+3. Celia Vicente Hernández, celiavicente.
+4. Daniel Blázquez Alejandro, cachopito.
 
 ## Objetivos del trabajo
 
