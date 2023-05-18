@@ -102,7 +102,6 @@ int main () {
     while (fscanf(pDatosUsuarios, "%s %s", usuario[i].nombre, usuario[i].contrasenya)!=EOF){
         i++;
     }
-    usuarios = i;
     fclose(pDatosUsuarios);
 
 
@@ -119,7 +118,6 @@ int main () {
             EsProfesor =1;
             posicion = i;
         }
-
     }
     if(EsProfesor==1){
         resultado2=strcmp(contrasenya,usuario[posicion].contrasenya);
@@ -131,7 +129,9 @@ int main () {
         do {
         printf("Contrasena incorrecta vuelve a intentarlo\n");
         printf("                   Contrase%ca:", 164);
+        fflush(stdin);
         scanf("%s", contrasenya);
+        
         resultado3=strcmp(contrasenya,usuario[posicion].contrasenya);
         if(resultado3==1){
             Contrasenyacorrecta = 1;
