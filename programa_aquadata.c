@@ -129,7 +129,7 @@ int main () {
     if(Contrasenyacorrecta == 0){ //contrasenacorrecta = 0 FALSO
         if (EsProfesor == 1){
         do {
-        printf("Contraseña incorrecta vuelve a intentarlo\n");
+        printf("Contrasena incorrecta vuelve a intentarlo\n");
         printf("                   Contrase%ca:", 164);
         scanf("%s", contrasenya);
         resultado3=strcmp(contrasenya,usuario[posicion].contrasenya);
@@ -144,7 +144,7 @@ int main () {
         if (EsProfesor == 0){
             printf("Entras como alumno\n");
         }else if (Contrasenyacorrecta == 1){
-        printf("Contraseña correcta entras como profesor\n");
+        printf("Contrasena correcta entras como profesor\n");
     }
 
     if(Contrasenyacorrecta == 1 && EsProfesor == 1){
@@ -214,7 +214,7 @@ break;
           break;
             case 'e':
             case 'E':
-            	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parámetro de la fuente y un ranking de la mejor y la peor fuente\n");
+            	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parametro de la fuente y un ranking de la mejor y la peor fuente\n");
             	for(i=1;i<TAM_FUENTE;i++){
                     if(barrio[i].pH >= 6.8 && barrio[i].pH <= 7.2){
                        barrio[i].puntos1=3;
@@ -253,7 +253,7 @@ break;
                             }
                         }
 
-                    printf("La mejor fuente es la %s con %d puntos.\n", mejorfuente.fuente, mejorfuente.ptotal);
+                    printf("La mejor fuente es la %s.\n", mejorfuente.fuente);
 
                     peorfuente = barrio[0];
                        for(i=1; i< TAM_FUENTE; i++){
@@ -262,7 +262,7 @@ break;
                             }
                         }
 
-                    printf("La peor fuente es la %s con %d puntos.\n", peorfuente.fuente, peorfuente.ptotal);
+                    printf("La peor fuente es la %s.\n", peorfuente.fuente);
 
 
             	printf("Media conductividad: %f\n", mediac (barrio, TAM_FUENTE)/TAM_FUENTE);
@@ -309,9 +309,9 @@ break;
 
 		case 3:
 				printf("¡Hola usuario!");
-			printf("En este apartado podrás conocer información sobre el peligro de la preesencia de las fuentes y sus consecuencias\n");
+			printf("En este apartado podras conocer informacion sobre el peligro de la preesencia de las fuentes y sus consecuencias\n");
 			printf("Para empezar, Los coliformes son un grupo de bacterias utilizadas como indicadores de contaminación fecal en el agua.\n");
-			printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los más comunes son Escherichia coli y Enterococcus faecalis.\n");
+			printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los mas comunes son Escherichia coli y Enterococcus faecalis.\n");
 			printf("Estos microorganismos pueden ser peligrosos para la salud si se consumen en grandes cantidades, ya que pueden causar enfermedades como gastroenteritis, diarrea y fiebre tifoidea.\n");
 			printf("Por lo tanto, es importante que el agua de la fuente local se analice regularmente para detectar la presencia de estos y otros contaminantes y tomar medidas adecuadas para garantizar su seguridad.\n");
 			printf("\n");
