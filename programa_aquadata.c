@@ -20,15 +20,16 @@ struct TJugador {
 };
 
 void banner () {
-//printf("                  AAA                 QQQQQQQQQ     UUUUUUUU     UUUUUUUU           AAA               DDDDDDDDDDDDD                  AAA         TTTTTTTTTTTTTTTTTTTTTTT         AAA               \n");
-//printf("                 A:::A              QQ:::::::::QQ   U::::::U     U::::::U          A:::A              D::::::::::::DDD              A:::A        T:::::::::::::::::::::T        A:::A              \n");
-//printf("                A:::::A           QQ:::::::::::::QQ U::::::U     U::::::U         A:::::A             D:::::::::::::::DD           A:::::A       T:::::::::::::::::::::T       A:::::A             \n");
+//printf("\n\n\n\n");
+printf("                  AAA                 QQQQQQQQQ     UUUUUUUU     UUUUUUUU           AAA               DDDDDDDDDDDDD                  AAA         TTTTTTTTTTTTTTTTTTTTTTT         AAA               \n");
+printf("                 A:::A              QQ:::::::::QQ   U::::::U     U::::::U          A:::A              D::::::::::::DDD              A:::A        T:::::::::::::::::::::T        A:::A              \n");
+printf("                A:::::A           QQ:::::::::::::QQ U::::::U     U::::::U         A:::::A             D:::::::::::::::DD           A:::::A       T:::::::::::::::::::::T       A:::::A             \n");
 //printf("               A:::::::A         Q:::::::QQQ:::::::Q U:::::U     U:::::UU        A:::::::A            DDD:::::DDDDD:::::D         A:::::::A      T:::::TT:::::::TT:::::T      A:::::::A            \n");
-printf("              A:::::::::A        Q::::::O   Q::::::Q U:::::U     U:::::U        A:::::::::A             D:::::D    D:::::D       A:::::::::A     TTTTTT  T:::::T  TTTTTT     A:::::::::A           \n");
+//printf("              A:::::::::A        Q::::::O   Q::::::Q U:::::U     U:::::U        A:::::::::A             D:::::D    D:::::D       A:::::::::A     TTTTTT  T:::::T  TTTTTT     A:::::::::A           \n");
 printf("             A:::::A:::::A       Q:::::O     Q:::::Q U:::::D     D:::::U       A:::::A:::::A            D:::::D     D:::::D     A:::::A:::::A            T:::::T            A:::::A:::::A          \n");
 printf("            A:::::A A:::::A      Q:::::O     Q:::::Q U:::::D     D:::::U      A:::::A A:::::A           D:::::D     D:::::D    A:::::A A:::::A           T:::::T           A:::::A A:::::A         \n");
 printf("           A:::::A   A:::::A     Q:::::O     Q:::::Q U:::::D     D:::::U     A:::::A   A:::::A          D:::::D     D:::::D   A:::::A   A:::::A          T:::::T          A:::::A   A:::::A        \n");
-printf("          A::::::A     A::::A    Q:::::O     Q:::::Q U:::::D     D:::::U    A:::::A     A:::::A         D:::::D     D:::::D  A:::::A     A:::::A         T:::::T         A:::::A     A:::::A       \n");
+printf("          A::::::A    A:::::A    Q:::::O     Q:::::Q U:::::D     D:::::U    A:::::A     A:::::A         D:::::D     D:::::D  A:::::A     A:::::A         T:::::T         A:::::A     A:::::A       \n");
 printf("         A:::::AAAAAAAAA:::::A   Q:::::O     Q:::::Q U:::::D     D:::::U   A:::::AAAAAAAAA:::::A        D:::::D     D:::::D A:::::AAAAAAAAA:::::A        T:::::T        A:::::AAAAAAAAA:::::A      \n");
 printf("        A:::::::::::::::::::::A  Q:::::O  QQQQ:::::Q U:::::D     D:::::U  A:::::::::::::::::::::A       D:::::D     D:::::DA:::::::::::::::::::::A       T:::::T       A:::::::::::::::::::::A     \n");
 printf("       A:::::AAAAAAAAAAAAA:::::A Q::::::O Q::::::::Q U::::::U   U::::::U A:::::AAAAAAAAAAAAA:::::A      D:::::D    D:::::DA:::::AAAAAAAAAAAAA:::::A      T:::::T      A:::::AAAAAAAAAAAAA:::::A    \n");
@@ -38,6 +39,7 @@ printf("    A:::::A                 A:::::A QQ:::::::::::Q      UU:::::::::UU A:
 printf("   AAAAAAA                   AAAAAAA  QQQQQQQQ::::QQ      UUUUUUUUU  AAAAAAA                   AAAAAAADDDDDDDDDDDDD   AAAAAAA                   AAAAAAATTTTTTTTTTTAAAAAAA                   AAAAAAA\n");
 printf("                                           Q:::::Q                                                                                                                                                 \n");
 printf("                                            QQQQQQ                                                                                                                                                 \n");
+//printf("\n\n\n\n");
     return;
 }
 
@@ -82,7 +84,6 @@ int main () {
 	}
 	fclose(fentrada);
 	TAM_FUENTE=i;
-	printf("%d", i);
 
 	//Inicializadores que se utilizan para el inicio de sesion
 		int opcionprofesor, opcionalumno;
@@ -107,8 +108,9 @@ int main () {
     }
     fclose(pDatosUsuarios);
 
+    //banner();
 
-    printf("                   Iniciar Sesi%cn\n                   Usuario:", 162);
+    printf("\n\n\n                   Iniciar Sesi%cn\n                   Usuario:", 162);
     scanf("%s", nombre);
     //fflush(stdin);
     printf("                   Contrase%ca:", 164);
@@ -130,7 +132,7 @@ int main () {
 	}
     if(Contrasenyacorrecta == 0 &&  EsProfesor ==1 ){ //contrasenacorrecta = 0 FALSO
         do {
-        printf("Contrasena incorrecta vuelve a intentarlo\n");
+        printf("Contrase%ca incorrecta vuelve a intentarlo\n", 164);
         printf("                   Contrase%ca:", 164);
         scanf("%s", contrasenya);
 
@@ -141,24 +143,25 @@ int main () {
         }   while (Contrasenyacorrecta == 1 &&   EsProfesor ==1);
 	}
      if (EsProfesor == 0){
-        printf("No existe esa cuenta con esa contrasenya, entras como alumno\n");
-        printf("Con este modo de entrada solo tienes dos opciones a elegir\n");
+        printf("No existe esa cuenta con esa contrase%ca, entras como alumno\n", 164);
+        printf("Con este modo de entrada s%clo tienes dos opciones a elegir\n", 162);
+
         do{
-        printf("Introduce la opcion que desee\n");
-		printf("1: Informacion\n");
+        printf("Introduce la opci%cn que desee\n", 162);
+		printf("1: Informaci%cn\n",162);
 		printf("2: Salir del programa\n");
 		scanf("%d", &opcionalumno);
 		switch(opcionalumno){
 			case 1:
-				printf("¡Hola usuario!");
-				printf("En este apartado podras conocer informacion sobre el peligro de la preesencia de las fuentes y sus consecuencias\n");
-				printf("Para empezar, Los coliformes son un grupo de bacterias utilizadas como indicadores de contaminación fecal en el agua.\n");
-				printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los mas comunes son Escherichia coli y Enterococcus faecalis.\n");
+				 printf("%cHola usuario%c", 173,33);
+				printf("En este apartado podr%cs conocer informaci%cn sobre el peligro de la presencia de las fuentes y sus consecuencias\n", 160,162);
+				printf("Para empezar, los coliformes son un grupo de bacterias utilizadas como indicadores de contaminaci%cn fecal en el agua.\n", 162);
+				printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los m%cs comunes son Escherichia coli y Enterococcus faecalis.\n", 160);
 				printf("Estos microorganismos pueden ser peligrosos para la salud si se consumen en grandes cantidades, ya que pueden causar enfermedades como gastroenteritis, diarrea y fiebre tifoidea.\n");
 				printf("Por lo tanto, es importante que el agua de la fuente local se analice regularmente para detectar la presencia de estos y otros contaminantes y tomar medidas adecuadas para garantizar su seguridad.\n");
 				printf("\n");
-				printf("Ahora que conoces un poco mas sobre estas especies, te gustaria saber un poco mas sobre las especies especificas de cada fuente?\n ");
-				printf("¿De que fuentes quieres advertirte, sobre las fuentes que tienen 0 , 1 o 2 colonias?\n");
+				printf("Ahora que conoces un poco m%cs sobre estas especies, %c te gustar%ca saber un poco m%cs sobre las especies espec%cficas de cada fuente?\n", 160,168,161, 160, 161);
+				printf("%cDe qu%c fuentes quieres advertirte, sobre las fuentes que tienen 0 , 1 o 2 colonias%c\n", 168, 130, 63);
 				scanf("%d", &nespecies);
 				if(nespecies == 0){
             		printf("Las fuentes que tienen %d especies son:\n", nespecies);
@@ -166,28 +169,28 @@ int main () {
             			if (barrio[i].coliformes == 0)
             				printf("%s\t%f\t%d\t%d\t%d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
             		printf("No hay ninguna especie coliforme en estas fuentes.\n");
-            		printf("Por lo tanto, los beneficios de no tener coliformes en las fuentes son múltiples, como una reducción en el riesgo de enfermedades transmitidas por el agua,\n");
-					printf("una mejora en la calidad del agua para uso recreativo y agrícola, y una mayor confianza en la seguridad del suministro de agua potable.\n");
-					printf("Además, la eliminación de los coliformes puede reducir los costos asociados con el tratamiento y la purificación del agua.\n");}
+            		printf("Por lo tanto, los beneficios de no tener coliformes en las fuentes son m%cltiples, como una reducci%cn en el riesgo de enfermedades transmitidas por el agua,\n", 163, 162);
+					printf("Una mejora en la calidad del agua para uso recreativo y agr%ccola, y una mayor confianza en la seguridad del suministro de agua potable.\n", 161);
+					printf("Adem%cs, la eliminaci%cn de los coliformes puede reducir los costos asociados con el tratamiento y la purificaci%cn del agua.\n", 160, 162,162);}
             	else if(nespecies == 1){
 					for(i=0;i<TAM_FUENTE;i++){
             			if (barrio[i].coliformes == 1)
             				printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
-           			 printf("En estas fuentes se encuentra una sola especie, la Escherichia coli, una bacteria que se localiza comúnmente en el tracto intestinal de los seres humanos y animales.\n");
-					printf("Si esta bacteria se encuentra en grandes cantidades en una fuente, puede indicar la presencia de contaminación fecal y, por lo tanto, de otros patógenos peligrosos para la salud.\n");
+           			 printf("En estas fuentes se encuentra una sola especie, la Escherichia coli, una bacteria que se localiza com%cnmente en el tracto intestinal de los seres humanos y animales.\n", 163);
+					printf("Si esta bacteria se encuentra en grandes cantidades en una fuente, puede indicar la presencia de contaminaci%cn fecal y, por lo tanto, de otros pat%cgenos peligrosos para la salud.\n", 162,162);
 					printf("\n");
-					printf("La exposición a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre y en casos extremos, insuficiencia renal y anemia hemolítica.\n");
-					printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua de la fuente y evitar la exposición a estos riesgos potenciales para la salud.\n");}
+					printf("La exposici%cn a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre y en casos extremos, insuficiencia renal y anemia hemol%ctica.\n", 162, 161);
+					printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua de la fuente y evitar la exposici%cn a estos riesgos potenciales para la salud.\n", 162);}
            		 else if(nespecies == 2){
             		for(i=1;i<TAM_FUENTE;i++){
             			if (barrio[i].coliformes == 2)
             				printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
             		printf("En estas fuentes, se observan 2 diferentes colonias\n");
-            		printf("Encontrar la  Escherichia Coli y la  Enterococcus faecalis puede ser muy nocivo para la salud, ya que se combinan las causas perjudiciales de ambos patógenos.\n");
+            		printf("Encontrar la  Escherichia Coli y la  Enterococcus faecalis puede ser muy nocivo para la salud, ya que se combinan las causas perjudiciales de ambos pat%cgenos.\n", 162);
 					printf("Beber agua con altos niveles de Enterococcus faecalis puede causar enfermedades gastrointestinales, infecciones del tracto urinario, sepsis y endocarditis.\n");
-					printf("Algunas cepas de Enterococcus faecalis pueden ser resistentes a los antibióticos, lo que hace que las infecciones sean difíciles de tratar.\n");
-					printf("Además, la exposición a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre, insuficiencia renal y anemia hemolítica.\n");
-					printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua potable en estas fuentes y evitar la exposición a estos riesgos potenciales para la salud.\n");}
+					printf("Algunas cepas de Enterococcus faecalis pueden ser resistentes a los antibi%cticos, lo que hace que las infecciones sean dif%cciles de tratar.\n", 162, 161);
+					printf("Adem%cs, la exposici%Cn a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre, insuficiencia renal y anemia hemol%ctica.\n", 160, 162, 161);
+					printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua potable en estas fuentes y evitar la exposici%cn a estos riesgos potenciales para la salud.\n", 162);}
 
             		else{
 
@@ -201,12 +204,12 @@ int main () {
 
 
     }else{ //if(Contrasenyacorrecta == 1 && EsProfesor == 1){
-    	printf("Contrasena correcta entras como profesor\n");
+    	printf("Contrase%ca correcta entras como profesor\n", 164);
     	do{
-		printf("Introduce la opcion que desee\n");
-		printf("1: Buscar Datos de la fuente\n");
-		printf("2: Anadir otra fuente\n");
-		printf("3: Informacion\n");
+		printf("Introduce la opci%cn que desee\n", 162);
+		printf("1: Buscar datos de la fuente\n");
+		printf("2: A%cadir otra fuente\n", 164);
+		printf("3: Informaci%cn\n", 162);
 		printf("4: Salir del programa\n");
 		scanf("%d", &opcionprofesor);
 
@@ -228,7 +231,7 @@ int main () {
             case 'b':
             	do{
 
-            	printf("¿Que parametro quieres buscar?\n");
+            	printf("%cQue par%cmetro quieres buscar%c\n", 168,160,63);
             	printf("Pulse P. pH\n");
             	printf("Pulse C. conductividad\n");
             	printf("Pulse T. turbidez\n");
@@ -236,13 +239,13 @@ int main () {
             	fflush(stdin);
             	scanf("%c", &parametro);
             	if (parametro == 'P'){
-            			printf("Introduce el pH del agua buscado que se encuentra entre 6 y 8\n");
+            			printf("Introduce el pH del agua buscado: \n");
             			fflush(stdin);
             			scanf("%f", &ph1);
                         buscarph(barrio, ph1, TAM_FUENTE);}
 
 	 			else if(parametro=='C'){
-	 				printf("Introduce la conductIvidad del agua buscada que se encuentra entre 100 y 300\n");
+	 				printf("Introduce la conductividad del agua buscada que se encuentra entre 100 y 300\n");
 	 					fflush(stdin);
             			scanf("%d", &conductividad);
                         buscarcond(barrio, conductividad, TAM_FUENTE);}
@@ -264,7 +267,7 @@ break;
           break;
             case 'e':
             case 'E':
-            	printf("En las estadisticas de las fuentes apreciaremos las medias de cada parametro de la fuente y un ranking de la mejor y la peor fuente\n");
+            	printf("En las estad%csticas de las fuentes apreciaremos las medias de cada par%cetro de la fuente y un ranking de la mejor y la peor fuente\n", 161, 160);
             	for(i=1;i<TAM_FUENTE;i++){
                     if(barrio[i].pH >= 6.8 && barrio[i].pH <= 7.2){
                        barrio[i].puntos1=3;
@@ -316,19 +319,17 @@ break;
 
 
             	printf("Media conductividad: %f\n", mediac (barrio, TAM_FUENTE)/TAM_FUENTE);
-            	printf("Media conductividad: %f\n", mediaspH (barrio, TAM_FUENTE)/TAM_FUENTE);
-				printf("Media conductividad: %f\n", mediasturbidez (barrio, TAM_FUENTE)/TAM_FUENTE);
-				printf("Media conductividad: %f\n", mediascoliformes (barrio, TAM_FUENTE)/TAM_FUENTE);
+            	printf("Media PH %f\n", mediaspH (barrio, TAM_FUENTE)/TAM_FUENTE);
+				printf("Media turbidez: %f\n", mediasturbidez (barrio, TAM_FUENTE)/TAM_FUENTE);
+				printf("Media coliformes: %f\n", mediascoliformes (barrio, TAM_FUENTE)/TAM_FUENTE);
             	break;
            }
 		   }while ( opciondato != 'B' && opciondato != 'E');
 		break;
 		case 2:
 
-			printf("Introduce el numero de fuentes que quieres anadir\n");
-			scanf("%d", &fnuevas);//ESTAS HAY QUE SUMARLAS AL TAM FUENTE
-			//para que salgan otra vez en el fichero es imprimirlo como un vector de estructuras en un fprintf
-			//Despues de ese fprintf , se pone otro fprintf para las fuentes nuevas a añadir
+			printf("Introduce el n%cmero de fuentes que quieres a%cadir\n", 163, 164);
+			scanf("%d", &fnuevas);
 			TAM_NUEVO = TAM_FUENTE + fnuevas;
 
 			for(i=TAM_FUENTE; i<TAM_NUEVO; i++){
@@ -338,14 +339,11 @@ break;
 				scanf("%d", &barrio[i].conductividad);
 				printf("Introduce la turbidez de la fuente %d: ", i+1);
 				scanf("%d", &barrio[i].turbidez);
-				printf("Introduce el numero de colonias coliformes de la fuente %d: ", i+1);
+				printf("Introduce el n%cmero de colonias coliformes de la fuente %d: ",163, i+1);
 				scanf("%d",  &barrio[i].coliformes);
 			}
 			TAM_FUENTE = TAM_NUEVO;
-			for(i=0; i<TAM_FUENTE; i++){
-				printf("Fuente_%d %f %d %d %d\n", i+1, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);
-
-			}
+        printf("A%cadida al sistema de fuentes\n", 164);
 
 		fsalida=fopen("202301_Lavapies.txt", "w"); //modo escritura
 		if(fsalida==NULL){
@@ -358,10 +356,6 @@ break;
 				fprintf(fsalida,"Fuente_%d %f %d %d %d\n", i+1, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);
 
 			}
-
-//fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
-//fprintf(fsalida,"Nota maxima es: %f", notaMax);
-
 	//PASO3: Cerrar el archivo
 	fclose(fsalida);
 
@@ -369,46 +363,44 @@ break;
 			break;
 
 		case 3:
-			printf("¡Hola usuario!");
-			printf("En este apartado podras conocer informacion sobre el peligro de la preesencia de las fuentes y sus consecuencias\n");
-			printf("Para empezar, Los coliformes son un grupo de bacterias utilizadas como indicadores de contaminación fecal en el agua.\n");
-			printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los mas comunes son Escherichia coli y Enterococcus faecalis.\n");
-			printf("Estos microorganismos pueden ser peligrosos para la salud si se consumen en grandes cantidades, ya que pueden causar enfermedades como gastroenteritis, diarrea y fiebre tifoidea.\n");
-			printf("Por lo tanto, es importante que el agua de la fuente local se analice regularmente para detectar la presencia de estos y otros contaminantes y tomar medidas adecuadas para garantizar su seguridad.\n");
-			printf("\n");
-			printf("Ahora que conoces un poco mas sobre estas especies, te gustaria saber un poco mas sobre las especies especificas de cada fuente?\n ");
-			printf("¿De que fuentes quieres advertirte, sobre las fuentes que tienen 0 , 1 o 2 colonias?\n");
-			scanf("%d", &nespecies);
-			if(nespecies == 0){
-            	printf("Las fuentes que tienen %d especies son:\n ", nespecies);
-            	for(i=0;i<TAM_FUENTE;i++){
-            		if (barrio[i].coliformes == 0)
-            			printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
-            	printf("No hay ninguna especie coliforme en estas fuentes.\n");
-            	printf("Por lo tanto, los beneficios de no tener coliformes en las fuentes son múltiples, como una reducción en el riesgo de enfermedades transmitidas por el agua,\n");
-				printf("una mejora en la calidad del agua para uso recreativo y agrícola, y una mayor confianza en la seguridad del suministro de agua potable.\n");
-				printf("Además, la eliminación de los coliformes puede reducir los costos asociados con el tratamiento y la purificación del agua.\n");}
-            else if(nespecies == 1){
-            	 printf("Las fuentes que tienen %d especies son:\n. ", nespecies);
-				for(i=0;i<TAM_FUENTE;i++){
-            		if (barrio[i].coliformes == 1)
-            			printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
-            	printf("En estas fuentes se encuentra la Escherichia coli, una bacteria que se localiza comúnmente en el tracto intestinal de los seres humanos y animales.\n");
-				printf("Si esta bacteria se encuentra en grandes cantidades en una fuente, puede indicar la presencia de contaminación fecal y, por lo tanto, de otros patógenos peligrosos para la salud.\n");
+                printf("%cHola usuario%c", 173,33);
+				printf("En este apartado podr%cs conocer informaci%cn sobre el peligro de la presencia de las fuentes y sus consecuencias\n", 160,162);
+				printf("Para empezar, los coliformes son un grupo de bacterias utilizadas como indicadores de contaminaci%cn fecal en el agua.\n", 162);
+				printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los m%cs comunes son Escherichia coli y Enterococcus faecalis.\n", 160);
+				printf("Estos microorganismos pueden ser peligrosos para la salud si se consumen en grandes cantidades, ya que pueden causar enfermedades como gastroenteritis, diarrea y fiebre tifoidea.\n");
+				printf("Por lo tanto, es importante que el agua de la fuente local se analice regularmente para detectar la presencia de estos y otros contaminantes y tomar medidas adecuadas para garantizar su seguridad.\n");
 				printf("\n");
-				printf("La exposición a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre y en casos extremos, insuficiencia renal y anemia hemolítica.\n");
-				printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua de la fuente y evitar la exposición a estos riesgos potenciales para la salud.\n");}
-            else if(nespecies == 2){
-            	 printf("Las fuentes que tienen %d especies son:\n .", nespecies);
-            	for(i=1;i<TAM_FUENTE;i++){
-            		if (barrio[i].coliformes == 2)
-            			printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
-            	printf("En estas fuentes, se observan 2 diferentes colonias\n");
-            	printf("Encontrar la  Escherichia Coli y la  Enterococcus faecalis puede ser muy nocivo para la salud, ya que se combinan las causas perjudiciales de ambos patógenos.\n");
-				printf("Beber agua con altos niveles de Enterococcus faecalis puede causar enfermedades gastrointestinales, infecciones del tracto urinario, sepsis y endocarditis.\n");
-				printf("Algunas cepas de Enterococcus faecalis pueden ser resistentes a los antibióticos, lo que hace que las infecciones sean difíciles de tratar.\n");
-				printf("Además, la exposición a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre, insuficiencia renal y anemia hemolítica.\n");
-				printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua potable en estas fuentes y evitar la exposición a estos riesgos potenciales para la salud.\n");}
+				printf("Ahora que conoces un poco m%cs sobre estas especies, %c te gustar%ca saber un poco m%cs sobre las especies espec%cficas de cada fuente?\n", 160,168,161, 160, 161);
+				printf("%cDe qu%c fuentes quieres advertirte, sobre las fuentes que tienen 0 , 1 o 2 colonias%c\n", 168, 130, 63);
+				scanf("%d", &nespecies);
+				if(nespecies == 0){
+            		printf("Las fuentes que tienen %d especies son:\n", nespecies);
+            		for(i=0;i<TAM_FUENTE;i++){
+            			if (barrio[i].coliformes == 0)
+            				printf("%s\t%f\t%d\t%d\t%d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
+            		printf("No hay ninguna especie coliforme en estas fuentes.\n");
+            		printf("Por lo tanto, los beneficios de no tener coliformes en las fuentes son m%cltiples, como una reducci%cn en el riesgo de enfermedades transmitidas por el agua,\n", 163, 162);
+					printf("Una mejora en la calidad del agua para uso recreativo y agr%ccola, y una mayor confianza en la seguridad del suministro de agua potable.\n", 161);
+					printf("Adem%cs, la eliminaci%cn de los coliformes puede reducir los costos asociados con el tratamiento y la purificaci%cn del agua.\n", 160, 162,162);}
+            	else if(nespecies == 1){
+					for(i=0;i<TAM_FUENTE;i++){
+            			if (barrio[i].coliformes == 1)
+            				printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
+           			 printf("En estas fuentes se encuentra una sola especie, la Escherichia coli, una bacteria que se localiza com%cnmente en el tracto intestinal de los seres humanos y animales.\n", 163);
+					printf("Si esta bacteria se encuentra en grandes cantidades en una fuente, puede indicar la presencia de contaminaci%cn fecal y, por lo tanto, de otros pat%cgenos peligrosos para la salud.\n", 162,162);
+					printf("\n");
+					printf("La exposici%cn a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre y en casos extremos, insuficiencia renal y anemia hemol%ctica.\n", 162, 161);
+					printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua de la fuente y evitar la exposici%cn a estos riesgos potenciales para la salud.\n", 162);}
+           		 else if(nespecies == 2){
+            		for(i=1;i<TAM_FUENTE;i++){
+            			if (barrio[i].coliformes == 2)
+            				printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
+            		printf("En estas fuentes, se observan 2 diferentes colonias\n");
+            		printf("Encontrar la  Escherichia Coli y la  Enterococcus faecalis puede ser muy nocivo para la salud, ya que se combinan las causas perjudiciales de ambos pat%cgenos.\n", 162);
+					printf("Beber agua con altos niveles de Enterococcus faecalis puede causar enfermedades gastrointestinales, infecciones del tracto urinario, sepsis y endocarditis.\n");
+					printf("Algunas cepas de Enterococcus faecalis pueden ser resistentes a los antibi%cticos, lo que hace que las infecciones sean dif%cciles de tratar.\n", 162, 161);
+					printf("Adem%cs, la exposici%Cn a la Escherichia coli puede provocar enfermedades como gastroenteritis, diarrea, fiebre, insuficiencia renal y anemia hemol%ctica.\n", 160, 162, 161);
+					printf("Es importante tomar medidas adecuadas para garantizar la seguridad del agua potable en estas fuentes y evitar la exposici%cn a estos riesgos potenciales para la salud.\n", 162);}
 
             else{
 
@@ -427,24 +419,24 @@ void buscarph(struct Tfuente barrio[], float ph, int TAM_FUENTE){
                         int i=0;
 
                         if(ph>=6 && ph<=6.5){
-                            printf("Las fuentes con un ph mas cercanas a %f que se encuentran entre 6 y 6.5 son:\n", ph);
+                            printf("Las fuentes con un ph m%cs cercanas a %f que se encuentran entre 6 y 6.5 son:\n", 160, ph);
                             for(i=0;i<TAM_FUENTE;i++){
                               if (barrio[i].pH >=6 && barrio[i].pH<=6.5)
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
                         else if(ph<=7){
-                            printf("Las fuentes con un ph mas cercanas a %f que se encuentran entre 6.5 y 7 son:\n", ph);
+                            printf("Las fuentes con un ph m%cs cercanas a %f que se encuentran entre 6.5 y 7 son:\n", 160, ph);
                           	for(i=0;i<=TAM_FUENTE;i++){
                                     if (barrio[i].pH >=6.5 && barrio[i].pH<=7)
                                         printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
 
                         else if(ph<=7.5){
-                            printf("Las fuentes con un ph mas cercanas a %f que se encuentran entre 7 y 7.5 son:\n", ph);
+                            printf("Las fuentes con un ph m%cs cercanas a %f que se encuentran entre 7 y 7.5 son:\n", 160, ph);
                         	for(i=0;i<TAM_FUENTE;i++){
 							  if (barrio[i].pH >=7 && barrio[i].pH<=7.5)
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
 
                          else if(ph<=8){
-                            printf("Las fuentes con un ph mas cercanas a %f que se encuentran entre 7.5 y 8 son:\n", ph);
+                            printf("Las fuentes con un ph m%cs cercanas a %f que se encuentran entre 7.5 y 8 son:\n", 160, ph);
                         for(i=0;i<TAM_FUENTE;i++){
 							  if (barrio[i].pH >=7.5 && barrio[i].pH<=8)
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}}
@@ -454,26 +446,26 @@ void buscarcond(struct Tfuente barrio[],int conductividad, int TAM_FUENTE){
 	int i=0;
 
                         if(conductividad>=100 && conductividad<=150){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 100 y 150 son:\n", conductividad);
+                            printf("Las conductividades m%cs cercanas de %d que se encuentran entre 100 y 150 son:\n",160, conductividad);
                           for(i=0;i<TAM_FUENTE;i++){
 
                               if (barrio[i].conductividad >=100 && barrio[i].conductividad<=150)
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
 
                         else if(conductividad>150 && conductividad<=200){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 150 y 200 son\n", conductividad);
+                            printf("Las conductividades m%cs cercanas de %d que se encuentran entre 150 y 200 son\n", 160, conductividad);
                               for(i=0;i<TAM_FUENTE;i++){
 							  if (barrio[i].conductividad >=150 && barrio[i].conductividad<=200)
                          printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
 
                          else if(conductividad>200 && conductividad<=250){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 200 y 250 son\n", conductividad);
+                            printf("Las conductividades m%cs cercanas de %d que se encuentran entre 200 y 250 son\n", 160, conductividad);
                           for(i=0;i<TAM_FUENTE;i++){
 							  if (barrio[i].conductividad >=200 && barrio[i].conductividad<=250)
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
 
                         else if(conductividad>250 && conductividad<=300){
-                            printf("Las conductividades mas cercanas de %d que se encuentran entre 250 y 300 son\n", conductividad);
+                            printf("Las conductividades m%cs cercanas de %d que se encuentran entre 250 y 300 son\n", 160, conductividad);
                               for(i=0;i<TAM_FUENTE;i++){
 							  if (barrio[i].conductividad >=250 && barrio[i].conductividad<=300)
                                 printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}}
