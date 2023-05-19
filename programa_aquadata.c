@@ -137,10 +137,10 @@ int main () {
         scanf("%s", contrasenya);
 
         resultado3=strcmp(contrasenya,usuario[posicion].contrasenya);
-        if(resultado3==1){
+        if(resultado3==0){
             Contrasenyacorrecta = 1;
         }
-        }   while (Contrasenyacorrecta == 1 &&   EsProfesor ==1);
+        }   while (Contrasenyacorrecta == 0 &&   EsProfesor ==1);
 	}
      if (EsProfesor == 0){
         printf("No existe esa cuenta con esa contrase%ca, entras como alumno\n", 164);
@@ -203,7 +203,7 @@ int main () {
 		return 0;}
 
 
-    }else{ //if(Contrasenyacorrecta == 1 && EsProfesor == 1){
+    }else if(Contrasenyacorrecta == 1 && EsProfesor == 1){
     	printf("Contrase%ca correcta entras como profesor\n", 164);
     	do{
 		printf("Introduce la opci%cn que desee\n", 162);
