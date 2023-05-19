@@ -52,22 +52,23 @@ float mediasturbidez(struct Tfuente barrio[],int);
 float mediascoliformes(struct Tfuente barrio[],int);
 
 int main () {
-	int TAM_FUENTE;
+	int TAM_FUENTE=0;
+	int TAM_NUEVO=0;
 	struct Tfuente barrio[500];
 	struct Tfuente mejorfuente;
 	struct Tfuente peorfuente;
-	int nfuentes;
+	//int nfuentes;
 	char parametro;
 	char max[25];
-	int i,j;
-	int fnuevas;
+	int i=0;
+	int fnuevas=0;
 	float ph1;
 	int conductividad, turbidez, coliformes;
 	FILE *fentrada;
 	FILE *fsalida;
 	int puntos=0;
-	int nespecies;
-	int fuentes;
+	int nespecies=0;
+	//int fuentes;
 	char nconductividad[20], nturbidez[20], ncoliformes[20], npH[20], nparametro[20];
 	fentrada = fopen("202301_Lavapies.txt", "r");
 	if (fentrada == NULL) {
@@ -76,15 +77,12 @@ int main () {
 	}
 	fscanf(fentrada, "%s %s %s %s %s",  nparametro, npH, nconductividad, nturbidez, ncoliformes);
 	i=0;
-	fuentes=0;
-	 while(fscanf(fentrada, "%s %f %d %d %d", barrio[i].fuente, &barrio[i].pH, &barrio[i].conductividad, &barrio[i].turbidez, &barrio[i].coliformes)!= EOF){
+    while(fscanf(fentrada, "%s %f %d %d %d", barrio[i].fuente, &barrio[i].pH, &barrio[i].conductividad, &barrio[i].turbidez, &barrio[i].coliformes)!= EOF){
 	 	i++;
-		fuentes=i;	
 	}
-
 	fclose(fentrada);
-	TAM_FUENTE=fuentes;
-	printf("%d", TAM_FUENTE);
+	TAM_FUENTE=i;
+	printf("%d", i);
 
 	//Inicializadores que se utilizan para el inicio de sesion
 		int opcionprofesor, opcionalumno;
@@ -130,12 +128,12 @@ int main () {
             Contrasenyacorrecta = 1;
             }
 	}
-    if(Contrasenyacorrecta == 0 &&   EsProfesor ==1 ){ //contrasenacorrecta = 0 FALSO
+    if(Contrasenyacorrecta == 0 &&  EsProfesor ==1 ){ //contrasenacorrecta = 0 FALSO
         do {
         printf("Contrasena incorrecta vuelve a intentarlo\n");
         printf("                   Contrase%ca:", 164);
         scanf("%s", contrasenya);
-        
+
         resultado3=strcmp(contrasenya,usuario[posicion].contrasenya);
         if(resultado3==1){
             Contrasenyacorrecta = 1;
@@ -166,7 +164,7 @@ int main () {
             		printf("Las fuentes que tienen %d especies son:\n", nespecies);
             		for(i=0;i<TAM_FUENTE;i++){
             			if (barrio[i].coliformes == 0)
-            				printf("%s %f %d %d %d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
+            				printf("%s\t%f\t%d\t%d\t%d\n", barrio[i].fuente, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);}
             		printf("No hay ninguna especie coliforme en estas fuentes.\n");
             		printf("Por lo tanto, los beneficios de no tener coliformes en las fuentes son múltiples, como una reducción en el riesgo de enfermedades transmitidas por el agua,\n");
 					printf("una mejora en la calidad del agua para uso recreativo y agrícola, y una mayor confianza en la seguridad del suministro de agua potable.\n");
@@ -195,13 +193,13 @@ int main () {
 
 						 printf("No hay esa cantidad de colonias coliformes \n");}
 			break;
-			
+
 		}
         } while (opcionalumno> 2|| opcionalumno < 1);
 		if(opcionalumno == 4){
-		return 0;} 
-	 
-        
+		return 0;}
+
+
     }else{ //if(Contrasenyacorrecta == 1 && EsProfesor == 1){
     	printf("Contrasena correcta entras como profesor\n");
     	do{
@@ -329,21 +327,25 @@ break;
 
 			printf("Introduce el numero de fuentes que quieres anadir\n");
 			scanf("%d", &fnuevas);//ESTAS HAY QUE SUMARLAS AL TAM FUENTE
-			//para que salgan otra vez en el fichero es imprimirlo como un vector de estructuras en un fprintf 
+			//para que salgan otra vez en el fichero es imprimirlo como un vector de estructuras en un fprintf
 			//Despues de ese fprintf , se pone otro fprintf para las fuentes nuevas a añadir
+			TAM_NUEVO = TAM_FUENTE + fnuevas;
 
-			for(i=TAM_FUENTE; i<=fnuevas; i++){
-				printf("Introduce el ph de la fuente %d", i);
+			for(i=TAM_FUENTE; i<TAM_NUEVO; i++){
+				printf("Introduce el ph de la fuente %d: ", i+1);
 				scanf("%f", &barrio[i].pH);
-				printf("Introduce la conductividad de la fuente %d", i);
+				printf("Introduce la conductividad de la fuente %d: ", i+1);
 				scanf("%d", &barrio[i].conductividad);
-				printf("Introduce la turbidez de la fuente %d", i);
+				printf("Introduce la turbidez de la fuente %d: ", i+1);
 				scanf("%d", &barrio[i].turbidez);
-				printf("Introduce el numero de colonias coliformes de la fuente %d", i);
+				printf("Introduce el numero de colonias coliformes de la fuente %d: ", i+1);
 				scanf("%d",  &barrio[i].coliformes);
 			}
-			//TAM_FUENTE
+			TAM_FUENTE = TAM_NUEVO;
+			for(i=0; i<TAM_FUENTE; i++){
+				printf("Fuente_%d %f %d %d %d\n", i+1, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);
 
+			}
 
 		fsalida=fopen("202301_Lavapies.txt", "w"); //modo escritura
 		if(fsalida==NULL){
@@ -351,10 +353,14 @@ break;
 		return 0;
 	}
 	//PASO 2:Escribir el archivo
+        fprintf(fsalida, "%s %s %s %s %s\n",  nparametro, npH, nconductividad, nturbidez, ncoliformes);
+        for(i=0; i<TAM_FUENTE; i++){
+				fprintf(fsalida,"Fuente_%d %f %d %d %d\n", i+1, barrio[i].pH, barrio[i].conductividad, barrio[i].turbidez, barrio[i].coliformes);
 
-	//for(i=0;)
-////	fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
-//	fprintf(fsalida,"Nota maxima es: %f", notaMax);
+			}
+
+//fprintf(fsalida,"La nota media es: %f", media/nestudiantes);
+//fprintf(fsalida,"Nota maxima es: %f", notaMax);
 
 	//PASO3: Cerrar el archivo
 	fclose(fsalida);
