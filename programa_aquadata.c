@@ -364,7 +364,7 @@ break;
 
 		case 3:
                 printf("%cHola usuario%c", 173,33);
-				printf("En este apartado podr%cs conocer informaci%cn sobre el peligro de la presencia de las fuentes y sus consecuencias\n", 160,162);
+				printf("En este apartado podr%cs conocer informaci%cn sobre el peligro de la presencia de los coliformes y sus consecuencias\n", 160,162);
 				printf("Para empezar, los coliformes son un grupo de bacterias utilizadas como indicadores de contaminaci%cn fecal en el agua.\n", 162);
 				printf("En una fuente local, se pueden encontrar diferentes tipos de coliformes, pero los m%cs comunes son Escherichia coli y Enterococcus faecalis.\n", 160);
 				printf("Estos microorganismos pueden ser peligrosos para la salud si se consumen en grandes cantidades, ya que pueden causar enfermedades como gastroenteritis, diarrea y fiebre tifoidea.\n");
